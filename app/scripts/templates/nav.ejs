@@ -1,0 +1,11 @@
+<ul id="menu">
+    <li><a id="nav_chordynator" class="navitem">+ comp</a></li>
+    <li><a id="nav_add_plat" class="navitem">+ map</a></li>
+    <li><a id="nav_add_tab" class="navitem">+ tab</a></li>
+</ul>
+
+<ul id="keys">
+    <% for(var key in keys) { %>
+    <li><a class="key" data-key="<%= keys[key] %>"><%= keys[key] %></a></li>
+    <% } %>
+</ul>
