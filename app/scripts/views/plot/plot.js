@@ -67,8 +67,15 @@ define([
 
         subs:function(){
 
-            // Backbone.pubSub.on(this.model.pubs.plotClicked, this.activate, this);
-            // this.model.on("change",  this.render, this);
+            // subs
+            Backbone.pubSub.on('plat:destroy', this.close, this);
+
+        },
+
+        close:function(id){
+
+            // remove this view
+            if(this.model.plat.id == id) this.remove(); 
 
         },
 
@@ -87,8 +94,6 @@ define([
 
             // activate
             this.activate(plot, plat);
-
-            // Backbone.pubSub.trigger(this.model.pubs.plotClicked, e);
 
         },
 
@@ -129,23 +134,26 @@ define([
 
         render:function(){
 
+            // model shim to pass in root parent id
+            var plat_id = this.model.plat.id;
+
             // create and attach rect background
-            var plotBG = new PlotBGview();
+            var plotBG = new PlotBGview({ model:{plat:plat_id} });
             this.$el.append(plotBG.render().el);
 
             // create and attach name text
-            var plotChordNote = new PlotChordNote({model:{note: this.model.chord.note}});
+            var plotChordNote = new PlotChordNote({model:{note: this.model.chord.note, plat:plat_id}});
             this.$el.append(plotChordNote.render().el);
 
             // create and attach type text
-            var plotChordType = new PlotChordType({model:{type: this.model.chord.type}});
+            var plotChordType = new PlotChordType({model:{type: this.model.chord.type, plat:plat_id}});
             this.$el.append(plotChordType.render().el);
 
             // draw lead lines
             for(var line in this.model.plot.leads){
 
                 var leads = this.model.plot.leads[line];
-                var model = { x1:leads.from.x, y1:leads.from.y, x2:leads.to.x, y2:leads.to.y };
+                var model = { x1:leads.from.x, y1:leads.from.y, x2:leads.to.x, y2:leads.to.y, plat:plat_id };
                 var plotLeadView = new PlotLeadView({ model:model });
                 this.$el.append(plotLeadView.render().el);
 
@@ -158,9 +166,7 @@ define([
 
                 if(curr.length){
 
-                    var model = { cx:curr[0], cy:curr[1] };
-                        model.pole  = pole;
-                        model.class = 'contact ';
+                    var model = { cx:curr[0], cy:curr[1], plat:plat_id, pole:pole, class:'contact' };
                     var plotContact = new PlotContactView({ model:model });
                     this.$el.append(plotContact.render().el);
 

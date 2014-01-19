@@ -8,8 +8,9 @@ define([
     'models/plat',
     'views/plot/plot',
     'models/plot',
+    'models/plots',
     'views/svg'
-], function ($, _, Backbone, JST, PlatModel, PlotView, PlotModel, SVGview) {
+], function ($, _, Backbone, JST, PlatModel, PlotView, PlotModel, PlotsCollection, SVGview) {
     'use strict';
 
     var PlatView = SVGview.extend({
@@ -18,10 +19,41 @@ define([
       attributes: { viewBox:'0 0 100 100', version:'1.1' },
       template: JST['app/scripts/templates/plat.ejs'],
 
+      initialize:function(){
+
+        // create new collection
+        this.collection = new PlotsCollection();
+
+        // subs
+        Backbone.pubSub.on('plat:destroy', this.close, this);
+
+      },
+
+      close:function(id){
+
+        // remove this view
+        if(this.id == id) {
+
+          // delete it's model
+          delete this.model;
+
+          // delete collection
+          delete this.collection;
+
+          // remove this view
+          this.remove();
+
+          // remove it's container too
+          $('#'+id).remove();
+
+        }
+
+      },
+
       render: function(){
 
         // get plat wrapper
-        var template = $(this.template({ id:this.model.id }));
+        var template = $(this.template({ id:this.model.id, key:this.model.get('key') }));
 
         // attach plat template and plat to DOM
         $('#Dashboard').prepend(template.html(this.$el));

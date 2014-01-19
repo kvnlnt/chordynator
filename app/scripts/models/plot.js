@@ -11,19 +11,6 @@ define([
         defaults: {
             active:false,
             class:'plot'
-        }, 
-
-        intialize:function(){
-
-            // model change listeners
-            this.model.active.on("change", this.activeChange);
-
-        },
-
-        activeChange:function(){
-
-            console.log('rerender plot');
-
         }
 
     });

@@ -29,16 +29,24 @@ html, body {
     margin: 0;
     line-height: 3rem;
     background-color: #000000;
-    opacity: 0.3;
 }
 
 #Nav ul#menu li {
     width: 33.3333333%;
+    background-color: #040F17;
 }
 
-#Nav ul#keys li {
-    width: 14.28571428571429%;
-    background-color: #1B6BA1;
+#Nav ul#menu li:hover, #Nav ul#menu li.showing {
+    background-color: #05141E;
+}
+
+#Nav ul#menu li a {
+    cursor:pointer;
+    display: block;
+    height: 100%;
+    font-family: 'Quantico';
+    text-transform: uppercase;
+    color:#5884A1;
 }
 
 #Nav ul#keys {
@@ -47,26 +55,28 @@ html, body {
     transition: height 0.5s;
 }
 
-#Nav ul#keys.showing {
-    height: 3rem;
-    transition: height 0.5s;
+#Nav ul#keys li {
+    width: 14.28571428571429%;
+    background-color: #1B6BA1;
 }
 
-#Nav li a {
+#Nav ul#keys li a {
+    font-size: 1.5rem;
     cursor:pointer;
     display: block;
     height: 100%;
     font-family: 'Quantico';
     text-transform: uppercase;
-    color: #1B6BA1;
+    color:#FFFFFF;
 }
 
-#Nav ul#keys li a {
-    color:#05141E;
+#Nav ul#keys li:hover, #Nav ul#keys li.showing {
+    background-color: #2878AD;
 }
 
-#Nav li:hover {
-    opacity: 0.7;
+#Nav ul#keys.showing {
+    height: 3rem;
+    transition: height 0.5s;
 }
 
 #Dashboard {
@@ -79,8 +89,8 @@ html, body {
 
 .plat {
     background-color: #05141E;
-    min-height: 360px;
-    min-width: 360px;
+    height: 100%;
+    width: 100%;
     max-width: 360px;
     max-height: 360px;
     display:inline-block;

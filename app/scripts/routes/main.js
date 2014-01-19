@@ -19,7 +19,7 @@ define([
             var dashboard = new DashboardView();
 
             // KML : Default key shim
-            nav.addPlat('C');
+            //nav.addPlat('C');
         }
 
     });

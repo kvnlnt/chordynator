@@ -7,9 +7,9 @@ define([
 ], function (_, Backbone, PlotModel) {
     'use strict';
 
-    var platPlotsCollection = Backbone.Collection.extend({
+    var PlotModelCollection = Backbone.Collection.extend({
         model: PlotModel
     });
 
-    return platPlotsCollection;
+    return PlotModelCollection;
 });

@@ -7,9 +7,9 @@ define([
     'templates',
     'views/plat',
     'models/plat',
-    'collections/plat_plots',
+    'models/plats',
     'models/key'
-], function ($, _, Backbone, JST, PlatView, PlatModel, PlatPlotsCollection, KeyModel) {
+], function ($, _, Backbone, JST, PlatView, PlatModel, PlatModelCollection, KeyModel) {
 
     'use strict';
 
@@ -19,6 +19,12 @@ define([
         template: JST['app/scripts/templates/nav.ejs'],
         attributes: { 'id':'Nav' },
 
+        initialize: function(){
+            this.platModelCollection = new PlatModelCollection();
+            this.render();
+        },
+
+
         events: function() {
             var e = { 
                 'click #nav_add_plat' : 'showKeySelector',
@@ -27,25 +33,60 @@ define([
             return e;
         },
 
-        initialize: function(){
-            this.render();
-        },
-
         showKeySelector: function(e){
+            var text = $("#nav_add_plat").html() == '- Map' ? '+ Map' : '- Map';
+            $("#nav_add_plat").html(text);
+            $("#nav_add_plat").parent().toggleClass('showing');
             $("#keys").toggleClass('showing');
         },
 
         keySelected:function(e){
-            var key = $(e.currentTarget).data('key');
-            this.addPlat(key);
-            $("#nav_add_plat").click();
+
+            // add or remove?
+            var mode = $(e.currentTarget).parent().hasClass('showing') ? 'remove' : 'add';
+            var key  = $(e.currentTarget).data('key');
+
+            switch(mode)
+            {
+                case 'add':
+                    this.addPlat(key);
+                    break;
+                case 'remove':
+                    this.removePlat(key);
+                    break;
+            }
+
+            $(e.currentTarget).parent().toggleClass('showing');
+
         },
 
         addPlat:function(key){
-            var model      = new PlatModel({ id:'plat'+$('.plat').length, key:key });
-            var collection = new PlatPlotsCollection();
-            var view       = new PlatView({ model:model, collection:collection });
+
+            // create unique id
+            var id = 'plat'+key;
+
+            // create unique model and add to collection
+            var model = new PlatModel({ id:id, key:key });
+                this.platModelCollection.add(model);
+
+            // create unique view and
+            var view = new PlatView({ id:id, model:model });
+
+            // render plat view
             view.render();
+
+        },
+
+        removePlat:function(key){
+
+            // get model by id
+            var id    = 'plat'+key;
+            var model = this.platModelCollection.get(id);
+                this.platModelCollection.remove(model);
+
+            // broadcast for localized garbage collection
+            Backbone.pubSub.trigger('plat:destroy', id); 
+            
         },
 
         render: function(){
