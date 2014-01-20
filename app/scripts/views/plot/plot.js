@@ -47,7 +47,7 @@ define([
 
             // register event object
             var e = {
-                'dblclick'  : 'plotMenu',
+                'dblclick'  : 'nextChord',
                 'click'     : 'plotClicked'
             };
 
@@ -79,8 +79,29 @@ define([
 
         },
 
-        plotMenu:function(e){
-            console.log('plot menu');
+        nextChord:function(e){
+
+            // get types
+            var currType = this.model.chord.type;
+
+            // get index of current type
+            var currIndex = this.model.chord.types.indexOf(currType);
+
+            // get index of next type
+            var nextIndex = currIndex + 1 >= this.model.chord.types.length ? 0 : currIndex + 1;
+
+            // get type
+            var nextType = this.model.chord.types[nextIndex];
+
+            // update to new type
+            this.model.chord.type = nextType;
+
+            // update DOM
+            this.$el.find('text.type').html(nextType);
+
+            // removed text selections that result from doubleclick
+            window.getSelection().removeAllRanges();
+            
         },
 
         plotClicked:function(e){

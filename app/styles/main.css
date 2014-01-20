@@ -9,6 +9,10 @@ html, body {
     padding: 0;
 }
 
+a {
+    cursor: pointer;
+}
+
 #Nav {
     color:white;
     width: 100%;
@@ -79,6 +83,45 @@ html, body {
     transition: height 0.5s;
 }
 
+#Nav #tabs {
+    background-color: #1B6BA1;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s;
+    clear:both;
+}
+
+#Nav #tabs.showing {
+    height: 3rem;
+    transition: height 0.5s;
+}
+
+#Nav #tabChordText {
+    height: 3rem;
+    font-size: 1.5rem;
+    line-height: 3rem;
+    padding: 0 0 0 5%;
+    width: 70%;
+    background: transparent;
+    border: 0;
+    color: #FFFFFF;
+    font-family: 'Quantico';
+    display: block;
+    float: left;
+}
+
+#Nav #tabChordFindButton {
+    font-family: 'Quantico';
+    text-align: center;
+    width:25%;
+    background-color: #2878AD;
+    line-height: 3rem;
+    font-size: 1rem;
+    display: block;
+    float: right;
+    text-transform: uppercase;
+}
+
 #Dashboard {
     padding:0;
     height: 100%;
@@ -140,12 +183,13 @@ html, body {
 
 .plat .plot:hover text.name, 
 .plat .plot.activeLead text.name,
-.plat .plot.activeLead text.type {
+.plat .plot.activeLead text.type,
+.plat .plot:hover text.type {
     fill:#FFFFFF;
 }
 
 .plat .plot.active text.name{
-    fill:#CD2250;
+    fill:#FFFFFF;
 }
 
 .plat .plot text.type{

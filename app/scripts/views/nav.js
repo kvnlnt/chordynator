@@ -8,8 +8,9 @@ define([
     'views/plat',
     'models/plat',
     'models/plats',
-    'models/key'
-], function ($, _, Backbone, JST, PlatView, PlatModel, PlatModelCollection, KeyModel) {
+    'models/key',
+    'models/jtab'
+], function ($, _, Backbone, JST, PlatView, PlatModel, PlatModelCollection, KeyModel, jTabModel) {
 
     'use strict';
 
@@ -24,13 +25,27 @@ define([
             this.render();
         },
 
-
         events: function() {
             var e = { 
                 'click #nav_add_plat' : 'showKeySelector',
-                'click #keys .key' : 'keySelected'
+                'click #keys .key' : 'keySelected',
+                'click #nav_add_tab' : 'showTabSelector',
+                'click #tabs #tabChordFindButton': 'addTab'
             };
             return e;
+        },
+
+        addTab:function(e){
+            var name = $("#tabs #tabChordText").val().trim();
+            var chord = new jTabModel(name);
+            console.log(chord);
+        },
+
+        showTabSelector:function(e){
+            var text = $("#nav_add_tab").html() == '- Tab' ? '+ Tab' : '- Tab';
+            $("#nav_add_tab").html(text);
+            $("#nav_add_tab").parent().toggleClass('showing');
+            $("#tabs").toggleClass('showing');
         },
 
         showKeySelector: function(e){
