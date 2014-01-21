@@ -21,8 +21,15 @@ define([
         attributes: { 'id':'Nav' },
 
         initialize: function(){
+
+            // add collection
             this.platModelCollection = new PlatModelCollection();
+
+            // render nav
             this.render();
+
+            // register subs
+            Backbone.pubSub.on("plot:clicked", this.updateTabChordText, this)
         },
 
         events: function() {
@@ -33,6 +40,12 @@ define([
                 'click #tabs #tabChordFindButton': 'addTab'
             };
             return e;
+        },
+
+        updateTabChordText:function(plot){
+            var chord = (plot.chord.note + plot.chord.type).replace('*','dim');
+            $("#tabChordText").val(chord);
+            return chord;
         },
 
         addTab:function(e){

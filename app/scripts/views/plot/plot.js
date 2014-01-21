@@ -60,7 +60,7 @@ define([
 
             // events to listen for
             this.model.pubs = {
-                plotClicked: this.model.plat.model.id + ':plot:clicked'
+                plotClicked: 'plot:clicked'
             };
 
         },
@@ -115,6 +115,9 @@ define([
 
             // activate
             this.activate(plot, plat);
+
+            // publish
+            Backbone.pubSub.trigger(this.model.pubs.plotClicked, this.model);
 
         },
 
