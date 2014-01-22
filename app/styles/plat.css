@@ -1,0 +1,72 @@
+.plat {
+    height: 100%;
+    width: 100%;
+    max-width: 360px;
+    max-height: 360px;
+    display:inline-block;
+}
+
+.plat svg {
+    height: 100%;
+    width: 100%;
+}
+
+.plat .plot rect {
+    border-radius: 5px;
+    cursor: pointer;
+    fill: #05141E;
+    stroke: #1B6BA1;
+    stroke-width: 0.55;
+}
+
+.plat .plot ellipse {
+    fill:#1B6BA1;
+}
+
+.plat .plot line {
+    stroke:#1B6BA1;
+    stroke-width: 0.55;
+}
+
+.plat .plot ellipse.active {
+    fill:#FFFFFF;
+}
+
+.plat .plot:hover rect, .plat .plot:hover line {
+    stroke: #FFF;
+}
+
+.plat .plot.active rect, .plat .plot.active line {
+    stroke: #FFFFFF;
+}
+
+.plat .plot text.name{
+    fill: #1B6BA1;
+    font-size: 0.45rem;
+    font-family: 'Quantico';
+    pointer-events: none;
+    text-anchor: middle;
+}
+
+.plat .plot:hover text.name, 
+.plat .plot.activeLead text.name,
+.plat .plot.activeLead text.type,
+.plat .plot:hover text.type {
+    fill:#FFFFFF;
+}
+
+.plat .plot.active text.name{
+    fill:#FFFFFF;
+}
+
+.plat .plot text.type{
+    fill: #1B6BA1;
+    font-size: 0.2rem;
+    font-family: 'Quantico';
+    pointer-events: none;
+    text-anchor: middle;
+}
+
+.plat .plot.active text.type{
+    fill:#FFFFFF;
+}

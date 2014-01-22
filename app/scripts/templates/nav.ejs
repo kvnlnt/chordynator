@@ -1,16 +1,22 @@
-<ul id="menu">
-    <li><a id="nav_chordynator" class="navitem">+ comp</a></li>
-    <li><a id="nav_add_plat" class="navitem">+ map</a></li>
-    <li><a id="nav_add_tab" class="navitem">+ tab</a></li>
-</ul>
+<div class="menu">
+    <ul class="items">
+        <li><a class="item comp">+ comp</a></li>
+        <li><a class="item plat">+ map</a></li>
+        <li><a class="item tab">+ tab</a></li>
+    </ul>
+</div>
 
-<ul id="keys">
-    <% for(var key in keys) { %>
-    <li><a class="key" data-key="<%= keys[key] %>"><%= keys[key] %></a></li>
-    <% } %>
-</ul>
+<div class="plats">
+    <ul class="items">
+        <% for(var key in keys) { %>
+        <li><a class="item key" data-key="<%= keys[key] %>"><%= keys[key] %></a></li>
+        <% } %>
+    </ul>
+</div>
 
-<div id="tabs">
-    <input type="text" id="tabChordText" placeholder="CHORD" />
-    <a id="tabChordFindButton">+</a>
+<div class="tabs">
+    <ul class="items">
+        <li class="item find"><input type="text" placeholder="CHORD" /></li>
+        <li class="item add"><a>+</a></li>
+    </ul>
 </div>

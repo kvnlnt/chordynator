@@ -1,0 +1,122 @@
+#Nav {
+    color: white;
+    width: 100%;
+}
+
+#Nav ul {
+    margin:0;
+    padding: 0;
+    clear:both;
+}
+
+#Nav ul li {
+    font-size: .75rem;
+    display: block;
+    float: left;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    line-height: 3rem;
+}
+
+#Nav .menu ul li {
+    width: 33.3333333%;
+    background-color: #040F17;
+}
+
+#Nav .menu ul li:hover, 
+#Nav .menu ul li.showing {
+    background-color: #05141E;
+}
+
+#Nav .menu ul li a {
+    cursor:pointer;
+    display: block;
+    height: 100%;
+    font-family: 'Quantico';
+    text-transform: uppercase;
+    color:#5884A1;
+}
+
+#Nav .plats {
+    height: 0;
+    overflow: hidden;
+    float: left;
+    width: 100%;
+    transition: height 0.5s;
+}
+
+#Nav .plats.showing {
+    height: 3rem;
+    transition: height 0.5s;
+}
+
+#Nav .plats ul li {
+    width: 14.28571428571429%;
+    background-color: #1B6BA1;
+}
+
+#Nav .plats ul li a {
+    font-size: 1.5rem;
+    cursor:pointer;
+    display: block;
+    height: 100%;
+    font-family: 'Quantico';
+    text-transform: uppercase;
+    color:#FFFFFF;
+}
+
+#Nav .plats ul li:hover, 
+#Nav .plats ul li.showing {
+    background-color: #2878AD;
+}
+
+#Nav .tabs {
+    background-color: #1B6BA1;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s;
+    clear:both;
+    float: left;
+    width: 100%;
+}
+
+#Nav .tabs.showing {
+    height: 3rem;
+    transition: height 0.5s;
+}
+
+#Nav .tabs .find {
+    padding: 0;
+    width: 75%;
+}
+
+#Nav .tabs .find input {
+    height: 3rem;
+    font-size: 1.5rem;
+    line-height: 3rem;
+    padding-left: 5%;
+    width:95%;
+    background: transparent;
+    border: 0;
+    color: #FFFFFF;
+    font-family: 'Quantico';
+    display: block;
+    float: left;
+}
+
+#Nav .tabs .add {
+    width:25%;
+}
+
+#Nav .tabs .add a{
+    font-family: 'Quantico';
+    text-align: center;
+    width:100%;
+    background-color: #2878AD;
+    line-height: 3rem;
+    font-size: 1.75rem;
+    display: block;
+    float: right;
+    text-transform: uppercase;
+}

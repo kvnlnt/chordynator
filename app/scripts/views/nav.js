@@ -5,12 +5,13 @@ define([
     'underscore',
     'backbone',
     'templates',
+    'elements/nav',
     'views/plat',
     'models/plat',
     'models/plats',
     'models/key',
     'models/jtab'
-], function ($, _, Backbone, JST, PlatView, PlatModel, PlatModelCollection, KeyModel, jTabModel) {
+], function ($, _, Backbone, JST, DOM, PlatView, PlatModel, PlatModelCollection, KeyModel, jTabModel) {
 
     'use strict';
 
@@ -29,46 +30,53 @@ define([
             this.render();
 
             // register subs
-            Backbone.pubSub.on("plot:clicked", this.updateTabChordText, this)
+            Backbone.pubSub.on("plot:clicked", this.updateTabChordText, this);
+
         },
 
         events: function() {
-            var e = { 
-                'click #nav_add_plat' : 'showKeySelector',
-                'click #keys .key' : 'keySelected',
-                'click #nav_add_tab' : 'showTabSelector',
-                'click #tabs #tabChordFindButton': 'addTab'
-            };
+
+            // events container
+            var e = {};
+
+            // dynamically named events
+            e['click ' + DOM.menuPlat] = 'showPlatSelector';
+            e['click ' + DOM.menuTab]  = 'showTabSelector';
+            e['click ' + DOM.platsKey] = 'addPlat';
+            e['click ' + DOM.tabAdd]   = 'addTab';
+
+            // return object
             return e;
+
         },
 
+        // TABS
         updateTabChordText:function(plot){
             var chord = (plot.chord.note + plot.chord.type).replace('*','dim');
             $("#tabChordText").val(chord);
             return chord;
         },
 
+        showTabSelector:function(e){
+            var text = $(DOM.menuTab).html() == '- Tab' ? '+ Tab' : '- Tab';
+            $(DOM.menuTab).html(text);
+            $(DOM.tabs).toggleClass('showing');
+        },
+
         addTab:function(e){
-            var name = $("#tabs #tabChordText").val().trim();
+            var name = $(DOM.tabFind).val().trim();
             var chord = new jTabModel(name);
             console.log(chord);
         },
 
-        showTabSelector:function(e){
-            var text = $("#nav_add_tab").html() == '- Tab' ? '+ Tab' : '- Tab';
-            $("#nav_add_tab").html(text);
-            $("#nav_add_tab").parent().toggleClass('showing');
-            $("#tabs").toggleClass('showing');
+        // PLATS
+        showPlatSelector: function(e){
+            var text = $(DOM.menuPlat).html() == '- Map' ? '+ Map' : '- Map';
+            $(DOM.menuPlat).html(text);
+            $(DOM.plats).toggleClass('showing');
         },
 
-        showKeySelector: function(e){
-            var text = $("#nav_add_plat").html() == '- Map' ? '+ Map' : '- Map';
-            $("#nav_add_plat").html(text);
-            $("#nav_add_plat").parent().toggleClass('showing');
-            $("#keys").toggleClass('showing');
-        },
-
-        keySelected:function(e){
+        addPlat:function(e){
 
             // add or remove?
             var mode = $(e.currentTarget).parent().hasClass('showing') ? 'remove' : 'add';
@@ -77,7 +85,7 @@ define([
             switch(mode)
             {
                 case 'add':
-                    this.addPlat(key);
+                    this.createPlat(key);
                     break;
                 case 'remove':
                     this.removePlat(key);
@@ -88,7 +96,7 @@ define([
 
         },
 
-        addPlat:function(key){
+        createPlat:function(key){
 
             // create unique id
             var id = 'plat'+key;
