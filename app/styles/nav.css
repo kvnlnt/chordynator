@@ -38,6 +38,18 @@
     color:#5884A1;
 }
 
+#Nav .menu .items .comp:before,
+#Nav .menu .items .plat:before,
+#Nav .menu .items .tab:before {
+    content:'+ ';
+}
+
+#Nav .menu .items .comp.showing:before,
+#Nav .menu .items .plat.showing:before,
+#Nav .menu .items .tab.showing:before {
+    content:'- ';
+}
+
 #Nav .plats {
     height: 0;
     overflow: hidden;
@@ -86,9 +98,17 @@
     transition: height 0.5s;
 }
 
+#Nav .tabs ul {
+    position: relative;
+}
+
 #Nav .tabs .find {
     padding: 0;
-    width: 75%;
+    width: 100%;
+    display: block;
+    position: absolute;
+    top:0;
+    left:0;
 }
 
 #Nav .tabs .find input {
@@ -102,21 +122,50 @@
     color: #FFFFFF;
     font-family: 'Quantico';
     display: block;
-    float: left;
+}
+
+#Nav .tabs .add,
+#Nav .tabs .hint {
+    width:50px;
+    top:0;
+    position: absolute;
+}
+
+#Nav .tabs .hint {
+    border-right:1px solid #1B6BA1;
 }
 
 #Nav .tabs .add {
-    width:25%;
+    right:0;
 }
 
-#Nav .tabs .add a{
-    font-family: 'Quantico';
+#Nav .tabs .hint:nth-child(3){
+    right:50px;
+}
+
+#Nav .tabs .hint:nth-child(4){
+    right:101px;
+}
+
+#Nav .tabs .hint:nth-child(5){
+    right:152px;
+}
+
+#Nav .tabs .hint:nth-child(6){
+    right:203px;
+}
+
+#Nav .tabs .hint:nth-child(7){
+    right:254px;
+}
+
+#Nav .tabs .add a,
+#Nav .tabs .hint a {
+    font-family: 'Verdana';
     text-align: center;
     width:100%;
     background-color: #2878AD;
     line-height: 3rem;
-    font-size: 1.75rem;
+    font-size: 0.75rem;
     display: block;
-    float: right;
-    text-transform: uppercase;
 }

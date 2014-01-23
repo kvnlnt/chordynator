@@ -10,11 +10,15 @@ define(function () {
         menuPlat: '.menu > ul.items > li > a.plat',
         menuTab:  '.menu > ul.items > li > a.tab',
 
+        comps:    '.comps',
+
         plats:    '.plats',
         platsKey: '.plats .key',
 
         tabs:     '.tabs',
         tabFind:  '.tabs .find input',
+        tabItems: '.tabs .items',
+        tabHints: '.tabs .hint',
         tabAdd:   '.tabs .add a'
 
     };

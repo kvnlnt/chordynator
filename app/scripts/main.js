@@ -25,9 +25,6 @@ require([
     'routes/main'
 ], function (_, Backbone, Router) {
 
-    // KML
-    // if(window.APP === undefined) window.APP = { views:[], viewCollections:[], models:[], modelCollections:[] };
-
     // register pubSub mediator
     Backbone.pubSub = _.extend({}, Backbone.Events);
 

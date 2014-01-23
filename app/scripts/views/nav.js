@@ -30,7 +30,8 @@ define([
             this.render();
 
             // register subs
-            Backbone.pubSub.on("plot:clicked", this.updateTabChordText, this);
+            Backbone.pubSub.on("plot:clicked", this.updateTabFinderText, this);
+            Backbone.pubSub.on("plot:clicked", this.tabHint, this);
 
         },
 
@@ -40,29 +41,104 @@ define([
             var e = {};
 
             // dynamically named events
-            e['click ' + DOM.menuPlat] = 'showPlatSelector';
-            e['click ' + DOM.menuTab]  = 'showTabSelector';
+            e['click ' + DOM.menuComp] = 'showSubNav';
+            e['click ' + DOM.menuPlat] = 'showSubNav';
+            e['click ' + DOM.menuTab]  = 'showSubNav';
             e['click ' + DOM.platsKey] = 'addPlat';
             e['click ' + DOM.tabAdd]   = 'addTab';
+            e['focus ' + DOM.tabFind]  = 'tabHint';
+            e['keyup ' + DOM.tabFind]  = 'tabHint';
+            e['click ' + DOM.tabHints] = 'tabHintClick'
 
             // return object
             return e;
 
         },
 
+        // SUBNAV
+
+        showSubNav:function(e){
+
+            var item  = $(e.target).attr('item');
+            var items = [DOM.menuComp, DOM.menuPlat, DOM.menuTab, DOM.comps, DOM.plats, DOM.tabs];
+
+            function hideAllExcept(els){
+                items.filter(function(item){ 
+                    if(els.indexOf(item) < 0) $(item).removeClass('showing'); 
+                });
+            }
+
+            switch (item)
+            {
+                case 'comp':
+                    $(DOM.menuComp).toggleClass('showing');
+                    $(DOM.comps).toggleClass('showing');
+                    hideAllExcept([DOM.menuComp, DOM.comps]);
+                    break;
+                case 'plat':
+                    $(DOM.menuPlat).toggleClass('showing');
+                    $(DOM.plats).toggleClass('showing');
+                    hideAllExcept([DOM.menuPlat, DOM.plats]);
+                    break;
+                case 'tab':
+                    $(DOM.menuTab).toggleClass('showing');
+                    $(DOM.tabs).toggleClass('showing');
+                    hideAllExcept([DOM.menuTab, DOM.tabs]);
+                    break;
+            }
+
+            // if target is showing, hide
+            // else, show and
+        },
+
         // TABS
-        updateTabChordText:function(plot){
-            var chord = (plot.chord.note + plot.chord.type).replace('*','dim');
-            $("#tabChordText").val(chord);
+        tabHint:function(){
+
+            var text  = $(DOM.tabFind).val();
+
+            if(text.length) {
+
+                var jtab  = new jTabModel(text);
+                var hints = [];
+
+                // loop keys
+                for(var key in jtab.baseChords){
+                    var isLength  = key.length == text.length + 1;
+                    var isSimilar = key.substring(0, text.length) == text; 
+                    if(isLength && isSimilar) hints.push(key);
+                }
+
+                // remove hints
+                $(DOM.tabHints).remove();
+
+                // prepend onto tab subnav
+                _.each(hints, function(hint, i){
+                    var li = '<li class="hint"><a>'+hint+'</a></li>';
+                    if(i <= 3) $(DOM.tabItems).append(li);
+                });
+
+            }
+            
+        },
+
+        tabHintClick:function(e){
+
+            // get this hints text
+            var chord = $(e.target).text();
+
+            // assign it to the tabfinder
+            $(DOM.tabFind).val(chord);
+            
+        },
+
+        // updates tab finder text on plot:clicked event usually
+        updateTabFinderText:function(plot){
+            var chord = (plot.chord.note + plot.chord.type).replace('M','');
+            $(DOM.tabFind).val(chord);
             return chord;
         },
 
-        showTabSelector:function(e){
-            var text = $(DOM.menuTab).html() == '- Tab' ? '+ Tab' : '- Tab';
-            $(DOM.menuTab).html(text);
-            $(DOM.tabs).toggleClass('showing');
-        },
-
+        // add tab to dashboard
         addTab:function(e){
             var name = $(DOM.tabFind).val().trim();
             var chord = new jTabModel(name);
@@ -70,12 +146,8 @@ define([
         },
 
         // PLATS
-        showPlatSelector: function(e){
-            var text = $(DOM.menuPlat).html() == '- Map' ? '+ Map' : '- Map';
-            $(DOM.menuPlat).html(text);
-            $(DOM.plats).toggleClass('showing');
-        },
 
+        // add plat to dashboard, or remove it if it already exists
         addPlat:function(e){
 
             // add or remove?
@@ -96,6 +168,7 @@ define([
 
         },
 
+        // create a new plat
         createPlat:function(key){
 
             // create unique id
@@ -113,6 +186,7 @@ define([
 
         },
 
+        // remove plat by key
         removePlat:function(key){
 
             // get model by id
@@ -125,6 +199,7 @@ define([
             
         },
 
+        // render the nav
         render: function(){
             var key = new KeyModel();
             this.$el.html( this.template({ keys:key.get('notation').roots }) );
