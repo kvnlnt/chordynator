@@ -4,8 +4,9 @@ define([
     'jquery',
     'backbone',
     'views/nav',
-    'views/dashboard'
-], function ($, Backbone, NavView, DashboardView) {
+    'views/dashboard',
+    'views/tab'
+], function ($, Backbone, NavView, DashboardView, TabView) {
     'use strict';
 
     var MainRouter = Backbone.Router.extend({
@@ -17,6 +18,9 @@ define([
         main:function(){
             var nav = new NavView();
             var dashboard = new DashboardView();
+
+            // tab dev
+            var tab = new TabView();
 
             // KML : Default key shim
             //nav.addPlat('C');

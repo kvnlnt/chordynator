@@ -1,0 +1,36 @@
+.tab {
+    height: 100%;
+    width: 100%;
+    max-width: 360px;
+    max-height: 180px;
+    display:inline-block;
+    vertical-align: top;
+}
+
+.tab text.chord {
+    font-family: 'Quantico';
+    fill: #FFFFFF;
+    font-size: 0.5rem;
+    pointer-events: none;
+    text-anchor: middle;
+}
+
+.tab line.string {
+    stroke: #1B6BA1;
+    stroke-width: 0.6;
+}
+
+.tab line.fret {
+    stroke: #1B6BA1;
+    stroke-width: 0.2;
+}
+
+.tab text.fret-number {
+    font-size: 0.2rem;
+    font-family: 'Quantico';
+    fill: #1B6BA1;
+    font-size: 0.35rem;
+    letter-spacing: -0.13rem;
+    pointer-events: none;
+    text-anchor: middle;
+}

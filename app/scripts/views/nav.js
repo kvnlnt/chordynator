@@ -41,14 +41,14 @@ define([
             var e = {};
 
             // dynamically named events
-            e['click ' + DOM.menuComp] = 'showSubNav';
-            e['click ' + DOM.menuPlat] = 'showSubNav';
-            e['click ' + DOM.menuTab]  = 'showSubNav';
-            e['click ' + DOM.platsKey] = 'addPlat';
-            e['click ' + DOM.tabAdd]   = 'addTab';
-            e['focus ' + DOM.tabFind]  = 'tabHint';
-            e['keyup ' + DOM.tabFind]  = 'tabHint';
-            e['click ' + DOM.tabHints] = 'tabHintClick'
+            e['click '  + DOM.menuComp] = 'showSubNav';
+            e['click '  + DOM.menuPlat] = 'showSubNav';
+            e['click '  + DOM.menuTab]  = 'showSubNav';
+            e['click '  + DOM.platsKey] = 'addPlat';
+            e['click '  + DOM.tabAdd]   = 'addTab';
+            e['focus '  + DOM.tabFind]  = 'tabHint';
+            e['keyup '  + DOM.tabFind]  = 'tabHint';
+            e['click '  + DOM.tabHints] = 'tabHintClick';
 
             // return object
             return e;
@@ -128,6 +128,9 @@ define([
 
             // assign it to the tabfinder
             $(DOM.tabFind).val(chord);
+
+            // rerun tabhint after
+            this.tabHint();
             
         },
 

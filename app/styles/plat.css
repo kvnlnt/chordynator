@@ -4,6 +4,7 @@
     max-width: 360px;
     max-height: 360px;
     display:inline-block;
+    vertical-align: top;
 }
 
 .plat svg {
