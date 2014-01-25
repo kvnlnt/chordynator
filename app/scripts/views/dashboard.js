@@ -11,8 +11,7 @@ define([
 
     var DashboardView = Backbone.View.extend({
 
-        tagName: "div",
-        attributes:{ 'id':'Dashboard', 'class':'dashboard' },
+        template: JST['app/scripts/templates/dashboard.ejs'],
 
         initialize: function(){
             this.render();
@@ -23,7 +22,7 @@ define([
         },
 
         render: function(){
-            $('#Main').append(this.$el);
+             $('#Main').append(this.template());
         }
 
     });

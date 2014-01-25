@@ -8,6 +8,7 @@ define([
 
     var TabModel = Backbone.Model.extend({
         defaults: {
+            variation:0
         }
     });
 

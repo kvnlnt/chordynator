@@ -1,3 +1,16 @@
+#Plats {
+    display: block;
+    opacity: 0; 
+    height: 0;
+    overflow: hidden;
+}
+
+#Plats.showing {
+    -webkit-transition: opacity 2s ease-out;
+    opacity: 1;
+    height: auto;
+}
+
 .plat {
     height: 100%;
     width: 100%;

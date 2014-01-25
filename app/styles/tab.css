@@ -1,3 +1,16 @@
+#Tabs {
+    display: block;
+    opacity: 0; 
+    height: 0;
+    overflow: hidden;
+}
+
+#Tabs.showing {
+    -webkit-transition: opacity 2s ease-out;
+    opacity: 1;
+    height: auto;
+}
+
 .tab {
     height: 100%;
     width: 100%;
@@ -20,9 +33,14 @@
     stroke-width: 0.6;
 }
 
+.tab line.string.muted {
+    stroke-dasharray:1,1;
+}
+
 .tab line.fret {
     stroke: #1B6BA1;
-    stroke-width: 0.2;
+    stroke-width: 0.5;
+    opacity: 0.3;
 }
 
 .tab text.fret-number {
@@ -30,7 +48,11 @@
     font-family: 'Quantico';
     fill: #1B6BA1;
     font-size: 0.35rem;
-    letter-spacing: -0.13rem;
     pointer-events: none;
     text-anchor: middle;
+    opacity:0.3;
+}
+
+.tab circle.finger {
+    fill:#FFFFFF;
 }

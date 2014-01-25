@@ -2,30 +2,23 @@
     <svg viewBox="0 0 100 50" version="1.1">
 
         <!-- Chord -->
-        <text x="50" y="10" class="chord">Cm7</text>
-
-        <!-- Strings -->
-        <line x1="12" y1="15" x2="88" y2="15" class="string"></line>
-        <line x1="12" y1="19" x2="88" y2="19" class="string"></line>
-        <line x1="12" y1="23" x2="88" y2="23" class="string"></line>
-        <line x1="12" y1="27" x2="88" y2="27" class="string"></line>
-        <line x1="12" y1="31" x2="88" y2="31" class="string"></line>
-        <line x1="12" y1="35" x2="88" y2="35" class="string"></line>
+        <text x="50" y="10" class="chord"><%= chord %></text>
 
         <!-- Frets -->
-        <line x1="12" y1="15" x2="12" y2="42" class="fret"></line>
-        <line x1="30.3" y1="15" x2="30.3" y2="42" class="fret"></line>
-        <line x1="50.3" y1="15" x2="50.3" y2="42" class="fret"></line>
-        <line x1="70.3" y1="15" x2="70.3" y2="42" class="fret"></line>
-        <line x1="88" y1="15" x2="88" y2="42" class="fret"></line>
+        <% _.each(frets, function(fret, index){ %>
+            <line x1="<%= fret.x %>" y1="15" x2="<%= fret.x %>" y2="42" class="fret"></line>
+            <text x="<%= fret.x + 4 %>" y="42" class="fret-number"><%= fret.number %></text>
+        <% }); %>
 
-        <!-- Fret Numbers -->
-        <text x="16" y="42" class="fret-number">1</text>
-        <text x="35" y="42" class="fret-number">2</text>
-        <text x="55" y="42" class="fret-number">3</text>
-        <text x="75" y="42" class="fret-number">4</text>
+        <!-- Strings -->
+        <% _.each(strings, function(string, index){ %>
+            <line x1="12" y1="<%= string.y %>" x2="88" y2="<%= string.y %>" class="string <%= string.state %>"></line>
+        <% }); %>
 
-        <!-- Fingerings -->
+        <!-- Fingers -->
+        <% _.each(fingers, function(finger, index){ %>
+            <circle cx="<%= finger.x %>" cy="<%= finger.y %>" r="1.7" class="finger" />
+        <% }); %>
 
     </svg>
 </div>

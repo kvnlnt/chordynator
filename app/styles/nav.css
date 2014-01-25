@@ -23,31 +23,36 @@
 #Nav .menu ul li {
     width: 33.3333333%;
     background-color: #040F17;
-}
-
-#Nav .menu ul li:hover, 
-#Nav .menu ul li.showing {
-    background-color: #05141E;
-}
-
-#Nav .menu ul li a {
+    color:#5884A1;
     cursor:pointer;
     display: block;
     height: 100%;
     font-family: 'Quantico';
     text-transform: uppercase;
-    color:#5884A1;
 }
 
-#Nav .menu .items .comp:before,
-#Nav .menu .items .plat:before,
-#Nav .menu .items .tab:before {
+#Nav .menu ul li:hover, 
+#Nav .menu ul li.showing, 
+#Nav .menu ul a.showing {
+    background-color: #1B6BA1;
+    color:#FFFFFF;
+}
+
+#Nav .menu .items a.item {
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+#Nav .menu .items .nav_comp:before,
+#Nav .menu .items .nav_plat:before,
+#Nav .menu .items .nav_tab:before {
     content:'+ ';
 }
 
-#Nav .menu .items .comp.showing:before,
-#Nav .menu .items .plat.showing:before,
-#Nav .menu .items .tab.showing:before {
+#Nav .menu .items .nav_comp.showing:before,
+#Nav .menu .items .nav_plat.showing:before,
+#Nav .menu .items .nav_tab.showing:before {
     content:'- ';
 }
 

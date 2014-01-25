@@ -56,7 +56,7 @@ define([
         var template = $(this.template({ id:this.model.id, key:this.model.get('key') }));
 
         // attach plat template and plat to DOM
-        $('#Dashboard').prepend(template.html(this.$el));
+        $('#Plats').prepend(template.html(this.$el));
 
         // attach plots
         this.renderPlots();

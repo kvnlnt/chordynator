@@ -7,11 +7,13 @@ define([
     'templates',
     'elements/nav',
     'views/plat',
+    'views/tab',
     'models/plat',
     'models/plats',
     'models/key',
+    'models/tab',
     'models/jtab'
-], function ($, _, Backbone, JST, DOM, PlatView, PlatModel, PlatModelCollection, KeyModel, jTabModel) {
+], function ($, _, Backbone, JST, DOM, PlatView, TabView, PlatModel, PlatModelCollection, KeyModel, TabModel, jTabModel) {
 
     'use strict';
 
@@ -30,7 +32,7 @@ define([
             this.render();
 
             // register subs
-            Backbone.pubSub.on("plot:clicked", this.updateTabFinderText, this);
+            Backbone.pubSub.on("plot:clicked", this.tabFinderTextUpdate, this);
             Backbone.pubSub.on("plot:clicked", this.tabHint, this);
 
         },
@@ -41,11 +43,11 @@ define([
             var e = {};
 
             // dynamically named events
-            e['click '  + DOM.menuComp] = 'showSubNav';
-            e['click '  + DOM.menuPlat] = 'showSubNav';
-            e['click '  + DOM.menuTab]  = 'showSubNav';
-            e['click '  + DOM.platsKey] = 'addPlat';
-            e['click '  + DOM.tabAdd]   = 'addTab';
+            e['click '  + DOM.menuComp] = 'subNav';
+            e['click '  + DOM.menuPlat] = 'subNav';
+            e['click '  + DOM.menuTab]  = 'subNav';
+            e['click '  + DOM.platsKey] = 'platAdd';
+            e['click '  + DOM.tabAdd]   = 'tabAdd';
             e['focus '  + DOM.tabFind]  = 'tabHint';
             e['keyup '  + DOM.tabFind]  = 'tabHint';
             e['click '  + DOM.tabHints] = 'tabHintClick';
@@ -57,10 +59,10 @@ define([
 
         // SUBNAV
 
-        showSubNav:function(e){
+        subNav:function(e){
 
             var item  = $(e.target).attr('item');
-            var items = [DOM.menuComp, DOM.menuPlat, DOM.menuTab, DOM.comps, DOM.plats, DOM.tabs];
+            var items = [DOM.menuComp, DOM.Plats, DOM.menuPlat, DOM.Tabs, DOM.menuTab, DOM.comps, DOM.plats, DOM.tabs];
 
             function hideAllExcept(els){
                 items.filter(function(item){ 
@@ -78,12 +80,14 @@ define([
                 case 'plat':
                     $(DOM.menuPlat).toggleClass('showing');
                     $(DOM.plats).toggleClass('showing');
-                    hideAllExcept([DOM.menuPlat, DOM.plats]);
+                    $(DOM.Plats).toggleClass('showing');
+                    hideAllExcept([DOM.menuPlat, DOM.plats, DOM.Plats]);
                     break;
                 case 'tab':
                     $(DOM.menuTab).toggleClass('showing');
                     $(DOM.tabs).toggleClass('showing');
-                    hideAllExcept([DOM.menuTab, DOM.tabs]);
+                    $(DOM.Tabs).toggleClass('showing');
+                    hideAllExcept([DOM.menuTab, DOM.tabs, DOM.Tabs]);
                     break;
             }
 
@@ -92,6 +96,7 @@ define([
         },
 
         // TABS
+
         tabHint:function(){
 
             var text  = $(DOM.tabFind).val();
@@ -135,23 +140,40 @@ define([
         },
 
         // updates tab finder text on plot:clicked event usually
-        updateTabFinderText:function(plot){
+        tabFinderTextUpdate:function(plot){
             var chord = (plot.chord.note + plot.chord.type).replace('M','');
             $(DOM.tabFind).val(chord);
             return chord;
         },
 
         // add tab to dashboard
-        addTab:function(e){
-            var name = $(DOM.tabFind).val().trim();
-            var chord = new jTabModel(name);
-            console.log(chord);
+        tabAdd:function(e){
+
+            // get chord name
+            var name = $(DOM.tabFind).val().trim().replace('*','dim');
+
+            // get variations up to fret 19
+            var variations  = [];
+
+            for(var i = 1; i < 20; i++){
+                var chord = new jTabModel(name + ':' + i); // get chord by NAME:CAGED_INDEX
+                var isFrettable = chord.chordArray[0] <= 19; // is this chord still on the fretboard
+                if(isFrettable) variations.push(chord); // if on fretboard, collect it
+                if(!isFrettable) break; // quit if frets are off the board
+            }
+
+            // create tab model
+            var model = new TabModel({ variations:variations, chord:name });
+
+            // create tab
+            var tab = new TabView({ model:model });
+
         },
 
         // PLATS
 
         // add plat to dashboard, or remove it if it already exists
-        addPlat:function(e){
+        platAdd:function(e){
 
             // add or remove?
             var mode = $(e.currentTarget).parent().hasClass('showing') ? 'remove' : 'add';
@@ -160,10 +182,10 @@ define([
             switch(mode)
             {
                 case 'add':
-                    this.createPlat(key);
+                    this.platCreate(key);
                     break;
                 case 'remove':
-                    this.removePlat(key);
+                    this.platRemove(key);
                     break;
             }
 
@@ -172,7 +194,7 @@ define([
         },
 
         // create a new plat
-        createPlat:function(key){
+        platCreate:function(key){
 
             // create unique id
             var id = 'plat'+key;
@@ -190,7 +212,7 @@ define([
         },
 
         // remove plat by key
-        removePlat:function(key){
+        platRemove:function(key){
 
             // get model by id
             var id    = 'plat'+key;
@@ -204,9 +226,20 @@ define([
 
         // render the nav
         render: function(){
+
+            // create key model
             var key = new KeyModel();
+
+            // attach notes
             this.$el.html( this.template({ keys:key.get('notation').roots }) );
+
+            // add to main template
             $('#Main').append(this.$el);
+
+            // debugging
+            // $(DOM.tabFind).val('B');
+            // setTimeout(function(){ $(DOM.tabAdd).click(); }, 100);
+
         }
 
     });
