@@ -14,8 +14,6 @@ define([
         template: JST['app/scripts/templates/tab.ejs'],
 
         initialize:function(){
-
-            console.log(this);
             
             // create collection
             // find CAGED fingerings
@@ -111,8 +109,6 @@ define([
             var numbers = frets.numbers; numbers.unshift(0); // add zero onto beginning of array
             var tab     = chordArray.map(function(x){ return x[0]; }); tab.shift(); tab.reverse(); // get tab and cleanup
 
-            console.log("tab=", tab, "frets=", numbers);
-
             // loop strings
             for(var string = 1; string <= tab.length; string++){
 
@@ -141,8 +137,6 @@ define([
                 tab.strings = this.getStrings(variation.chordArray);
                 tab.frets   = this.getFrets(variation.chordArray).frets;
                 tab.fingers = this.getFingers(variation.chordArray);
-
-            // console.log(variation.chordArray.map(function(x){ return x[0]; }), tab);
 
             // get template
             var template  = $(this.template(tab));

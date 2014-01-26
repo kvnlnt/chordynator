@@ -43,7 +43,6 @@ define([
             var e = {};
 
             // dynamically named events
-            e['click '  + DOM.menuComp] = 'subNav';
             e['click '  + DOM.menuPlat] = 'subNav';
             e['click '  + DOM.menuTab]  = 'subNav';
             e['click '  + DOM.platsKey] = 'platAdd';
@@ -62,7 +61,7 @@ define([
         subNav:function(e){
 
             var item  = $(e.target).attr('item');
-            var items = [DOM.menuComp, DOM.Plats, DOM.menuPlat, DOM.Tabs, DOM.menuTab, DOM.comps, DOM.plats, DOM.tabs];
+            var items = [DOM.menuComp, DOM.Plats, DOM.menuPlat, DOM.Tabs, DOM.menuTab, DOM.plats, DOM.tabs];
 
             function hideAllExcept(els){
                 items.filter(function(item){ 
@@ -72,11 +71,6 @@ define([
 
             switch (item)
             {
-                case 'comp':
-                    $(DOM.menuComp).toggleClass('showing');
-                    $(DOM.comps).toggleClass('showing');
-                    hideAllExcept([DOM.menuComp, DOM.comps]);
-                    break;
                 case 'plat':
                     $(DOM.menuPlat).toggleClass('showing');
                     $(DOM.plats).toggleClass('showing');
@@ -136,6 +130,9 @@ define([
 
             // rerun tabhint after
             this.tabHint();
+
+            // change focus back to window
+            $(window).focus();
             
         },
 
@@ -168,6 +165,9 @@ define([
             // create tab
             var tab = new TabView({ model:model });
 
+            // pub modification
+            Backbone.pubSub.trigger('tab:modified', e.currentTarget); 
+
         },
 
         // PLATS
@@ -190,6 +190,9 @@ define([
             }
 
             $(e.currentTarget).parent().toggleClass('showing');
+
+            // pub modification
+            Backbone.pubSub.trigger('plat:modified', e.currentTarget); 
 
         },
 

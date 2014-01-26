@@ -6,11 +6,8 @@ define(function () {
     // dom els
     var dom = {
 
-        menuComp: '.menu > ul.items > li > a.nav_comp',
         menuPlat: '.menu > ul.items > li > a.nav_plat',
         menuTab:  '.menu > ul.items > li > a.nav_tab',
-
-        comps:    '.comps',
 
         Plats:    '#Plats',
         plats:    '.plats',

@@ -21,7 +21,7 @@
 }
 
 #Nav .menu ul li {
-    width: 33.3333333%;
+    width: 50%;
     background-color: #040F17;
     color:#5884A1;
     cursor:pointer;
@@ -29,6 +29,7 @@
     height: 100%;
     font-family: 'Quantico';
     text-transform: uppercase;
+    transition: background-color 0.5s;
 }
 
 #Nav .menu ul li:hover, 
@@ -36,6 +37,7 @@
 #Nav .menu ul a.showing {
     background-color: #1B6BA1;
     color:#FFFFFF;
+    transition: background-color 0.5s;
 }
 
 #Nav .menu .items a.item {
@@ -72,6 +74,7 @@
 #Nav .plats ul li {
     width: 14.28571428571429%;
     background-color: #1B6BA1;
+    transition: background-color 0.5s;
 }
 
 #Nav .plats ul li a {
@@ -87,6 +90,7 @@
 #Nav .plats ul li:hover, 
 #Nav .plats ul li.showing {
     background-color: #2878AD;
+    transition: background-color 0.5s;
 }
 
 #Nav .tabs {
@@ -121,7 +125,7 @@
     height: 3rem;
     font-size: 1.5rem;
     line-height: 3rem;
-    padding-left: 5%;
+    padding-left: 1rem;
     width:95%;
     background: transparent;
     border: 0;
@@ -170,8 +174,14 @@
     font-family: 'Verdana';
     text-align: center;
     width:100%;
-    background-color: #2878AD;
+    background-color: #1B6BA1;
     line-height: 3rem;
     font-size: 0.75rem;
     display: block;
+}
+
+#Nav .tabs .add a:hover,
+#Nav .tabs .hint a:hover {
+    background-color: #2878AD;
+    transition: background-color 0.5s;
 }
