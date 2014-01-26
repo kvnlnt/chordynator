@@ -7,12 +7,13 @@ require.config({
             exports: '_'
         },
         backbone: {
-            deps: [ 'underscore', 'jquery', 'energize' ],
+            deps: [ 'underscore', 'jquery', 'jquery_sortable', 'energize' ],
             exports: 'Backbone'
         }
     },
     paths: {
         jquery: '../bower_components/jquery/jquery',
+        jquery_sortable:'../bower_components/jquery-sortable/jquery-sortable',
         energize:'../bower_components/energize.js/energize',
         backbone: '../bower_components/backbone/backbone',
         underscore: '../bower_components/underscore/underscore'

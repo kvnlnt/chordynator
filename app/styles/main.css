@@ -29,3 +29,14 @@ a {
     background-repeat: no-repeat;
     background-size: contain;
 }
+
+/* Drag styles */
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}

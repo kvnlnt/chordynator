@@ -132,6 +132,7 @@
     color: #FFFFFF;
     font-family: 'Quantico';
     display: block;
+    text-transform: capitalize;
 }
 
 #Nav .tabs .add,

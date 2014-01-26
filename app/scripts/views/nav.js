@@ -34,6 +34,7 @@ define([
             // register subs
             Backbone.pubSub.on("plot:clicked", this.tabFinderTextUpdate, this);
             Backbone.pubSub.on("plot:clicked", this.tabHint, this);
+            Backbone.pubSub.on('message:broadcast', this.message, this);
 
         },
 
@@ -53,6 +54,33 @@ define([
 
             // return object
             return e;
+
+        },
+
+        // MESSAGING
+        message:function(msg){
+
+            // template
+            var template = JST['app/scripts/templates/message.ejs'];
+
+            // attach notes
+            var message = template({ title:msg.title, message:msg.message });
+
+            // add to dom
+            $("#Main").append(message);
+
+            // hide automatically after time
+            var timeout = setTimeout(function(){ 
+                $("#Message").fadeOut( "slow", function() {
+                    this.remove();
+                });
+            }, msg.time);
+
+            // remove on click
+            $("#Message").on('click',function(){ 
+                this.remove(); 
+                clearTimeout(timeout); 
+            });
 
         },
 
@@ -91,9 +119,24 @@ define([
 
         // TABS
 
+        tabFindFormatter:function(){
+
+            // cap first string
+            var string = $(DOM.tabFind).val();
+                string = string.charAt(0).toUpperCase() + string.slice(1);
+
+            // reset value
+            $(DOM.tabFind).val(string);
+
+        },
+
         tabHint:function(){
 
-            var text  = $(DOM.tabFind).val();
+            // visual formatter
+            this.tabFindFormatter();
+
+            // now do internal formatting 
+            var text  = $(DOM.tabFind).val().replace("*","dim");
 
             if(text.length) {
 
@@ -159,14 +202,26 @@ define([
                 if(!isFrettable) break; // quit if frets are off the board
             }
 
-            // create tab model
-            var model = new TabModel({ variations:variations, chord:name });
+            // check if any chords where found
+            if(variations.length){
 
-            // create tab
-            var tab = new TabView({ model:model });
+                // create tab model
+                var model = new TabModel({ variations:variations, chord:name });
 
-            // pub modification
-            Backbone.pubSub.trigger('tab:modified', e.currentTarget); 
+                // create tab
+                var tab = new TabView({ model:model });
+
+                // pub modification
+                Backbone.pubSub.trigger('tab:modified', e.currentTarget); 
+
+            } else {
+
+                var msg = { title:'Whoops!', message:'The chord you entered was not found.', time:2000}
+                Backbone.pubSub.trigger('message:broadcast', msg);
+
+            }
+
+            
 
         },
 

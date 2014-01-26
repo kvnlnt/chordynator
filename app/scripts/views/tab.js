@@ -14,14 +14,21 @@ define([
         template: JST['app/scripts/templates/tab.ejs'],
 
         initialize:function(){
-            
-            // create collection
-            // find CAGED fingerings
-            // create models for each fingering
-            // register subs
-                // render
 
             this.render();
+
+        },
+
+        events: function() {
+
+            // events container
+            var e = {};
+
+            // dynamically named events
+            e['click svg > [button="remove"]'] = 'close';
+
+            // return object
+            return e;
 
         },
 
@@ -139,16 +146,25 @@ define([
                 tab.fingers = this.getFingers(variation.chordArray);
 
             // get template
-            var template  = $(this.template(tab));
+            var template  = this.template(tab);
+
+            // assign to el
+            this.setElement(template);
 
             // attach plat template and plat to DOM
-            $('#Tabs').prepend(template);
+            $('#Tabs').prepend(this.el);
 
         },
 
-        close:function(){
+        close:function(id){
 
-        },
+            // delete it's model
+            delete this.model;
+
+            // remove this view
+            this.remove();
+
+        }
 
     });
 

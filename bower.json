@@ -8,6 +8,7 @@
     "requirejs": "~2.1.5",
     "requirejs-text": "~2.0.5",
     "modernizr": "~2.6.2",
-    "energize.js": "https://github.com/kvnlnt/energize.js.git"
+    "energize.js": "https://github.com/kvnlnt/energize.js.git",
+    "jquery-sortable": "~0.9.11"
   }
 }

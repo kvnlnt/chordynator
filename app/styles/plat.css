@@ -20,6 +20,15 @@
     vertical-align: top;
 }
 
+.plat.placeholder {
+    width: 360px;
+    height: 360px;
+    display:inline-block;
+    vertical-align: top;
+    border:1px solid #1B6BA1;
+    position: relative;
+}
+
 .plat svg {
     height: 100%;
     width: 100%;

@@ -45,6 +45,21 @@ define([
             // Add to main
             $('#Main').append(this.template());
 
+            // register other behaviors
+            $("#Tabs").sortable({
+                containerSelector:'#Tabs',
+                itemSelector:'div.tab',
+                handle:'image',
+                placeholder: '<div class="tab placeholder"/>'
+            });
+
+            // register other behaviors
+            $("#Plats").sortable({
+                containerSelector:'#Plats',
+                itemSelector:'div.plat',
+                placeholder: '<div class="plat placeholder"/>'
+            });
+
         }
 
     });
