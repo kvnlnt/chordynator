@@ -6,8 +6,17 @@ define(function () {
     // dom els
     var dom = {
 
-        menuPlat: '.menu > ul.items > li > a.nav_plat',
-        menuTab:  '.menu > ul.items > li > a.nav_tab',
+        menuHome: '.menu > ul.items > li > a.nav_home',
+        menuPlat: '.menu > ul.items > li > a.nav_plats',
+        menuTab:  '.menu > ul.items > li > a.nav_tabs',
+        menuWord: '.menu > ul.items > li > a.nav_words',
+
+        Home:     '#Home',
+
+        Words:    '#Words',
+        words:    '.words',
+        wordFind: '.words .find input',
+        wordAdd:  '.words .add a',
 
         Plats:    '#Plats',
         plats:    '.plats',

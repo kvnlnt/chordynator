@@ -21,7 +21,8 @@
 }
 
 #Nav .menu ul li {
-    width: 50%;
+    /*width: 25%;*/
+    width: 33.3333333%;
     background-color: #040F17;
     color:#5884A1;
     cursor:pointer;
@@ -46,15 +47,17 @@
     display: block;
 }
 
-#Nav .menu .items .nav_comp:before,
-#Nav .menu .items .nav_plat:before,
-#Nav .menu .items .nav_tab:before {
+#Nav .menu .items .nav_comps:before,
+#Nav .menu .items .nav_plats:before,
+#Nav .menu .items .nav_tabs:before,
+#Nav .menu .items .nav_words:before {
     content:'+ ';
 }
 
-#Nav .menu .items .nav_comp.showing:before,
-#Nav .menu .items .nav_plat.showing:before,
-#Nav .menu .items .nav_tab.showing:before {
+#Nav .menu .items .nav_comps.showing:before,
+#Nav .menu .items .nav_plats.showing:before,
+#Nav .menu .items .nav_tabs.showing:before,
+#Nav .menu .items .nav_words.showing:before {
     content:'- ';
 }
 
@@ -93,7 +96,8 @@
     transition: background-color 0.5s;
 }
 
-#Nav .tabs {
+#Nav .tabs,
+#Nav .words {
     background-color: #1B6BA1;
     height: 0;
     overflow: hidden;
@@ -103,16 +107,19 @@
     width: 100%;
 }
 
-#Nav .tabs.showing {
+#Nav .tabs.showing,
+#Nav .words.showing {
     height: 3rem;
     transition: height 0.5s;
 }
 
-#Nav .tabs ul {
+#Nav .tabs ul,
+#Nav .words ul {
     position: relative;
 }
 
-#Nav .tabs .find {
+#Nav .tabs .find,
+#Nav .words .find  {
     padding: 0;
     width: 100%;
     display: block;
@@ -121,7 +128,8 @@
     left:0;
 }
 
-#Nav .tabs .find input {
+#Nav .tabs .find input,
+#Nav .words .find input {
     height: 3rem;
     font-size: 1.5rem;
     line-height: 3rem;
@@ -132,10 +140,10 @@
     color: #FFFFFF;
     font-family: 'Quantico';
     display: block;
-    text-transform: capitalize;
 }
 
 #Nav .tabs .add,
+#Nav .words .add,
 #Nav .tabs .hint {
     width:50px;
     top:0;
@@ -146,7 +154,8 @@
     border-right:1px solid #1B6BA1;
 }
 
-#Nav .tabs .add {
+#Nav .tabs .add,
+#Nav .words .add {
     right:0;
 }
 
@@ -171,6 +180,7 @@
 }
 
 #Nav .tabs .add a,
+#Nav .words .add a,
 #Nav .tabs .hint a {
     font-family: 'Verdana';
     text-align: center;
@@ -182,6 +192,7 @@
 }
 
 #Nav .tabs .add a:hover,
+#Nav .words .add a:hover,
 #Nav .tabs .hint a:hover {
     background-color: #2878AD;
     transition: background-color 0.5s;

@@ -23,12 +23,6 @@ a {
     clear:both;
 }
 
-#Dashboard.bg {
-    background-image: url('../images/logo.svg');
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-size: contain;
-}
 
 /* Drag styles */
 body.dragging, body.dragging * {

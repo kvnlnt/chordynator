@@ -8,12 +8,14 @@ define([
     'elements/nav',
     'views/plat',
     'views/tab',
+    'views/word',
     'models/plat',
     'models/plats',
     'models/key',
     'models/tab',
+    'models/word',
     'models/jtab'
-], function ($, _, Backbone, JST, DOM, PlatView, TabView, PlatModel, PlatModelCollection, KeyModel, TabModel, jTabModel) {
+], function ($, _, Backbone, JST, DOM, PlatView, TabView, WordView, PlatModel, PlatModelCollection, KeyModel, TabModel, WordModel, jTabModel) {
 
     'use strict';
 
@@ -44,8 +46,11 @@ define([
             var e = {};
 
             // dynamically named events
+            e['click '  + DOM.menuHome] = 'subNav';
+            e['click '  + DOM.menuWord] = 'subNav';
             e['click '  + DOM.menuPlat] = 'subNav';
             e['click '  + DOM.menuTab]  = 'subNav';
+            e['click '  + DOM.wordAdd]  = 'wordFind';
             e['click '  + DOM.platsKey] = 'platAdd';
             e['click '  + DOM.tabAdd]   = 'tabAdd';
             e['focus '  + DOM.tabFind]  = 'tabHint';
@@ -58,6 +63,7 @@ define([
         },
 
         // MESSAGING
+
         message:function(msg){
 
             // template
@@ -89,7 +95,7 @@ define([
         subNav:function(e){
 
             var item  = $(e.target).attr('item');
-            var items = [DOM.menuComp, DOM.Plats, DOM.menuPlat, DOM.Tabs, DOM.menuTab, DOM.plats, DOM.tabs];
+            var items = [DOM.menuHome, DOM.Home, DOM.menuWord, DOM.Words, DOM.words, DOM.Plats, DOM.menuPlat, DOM.Tabs, DOM.menuTab, DOM.plats, DOM.tabs];
 
             function hideAllExcept(els){
                 items.filter(function(item){ 
@@ -99,13 +105,24 @@ define([
 
             switch (item)
             {
-                case 'plat':
+                case 'home':
+                    $(DOM.menuHome).toggleClass('showing');
+                    $(DOM.Home).toggleClass('showing');
+                    hideAllExcept([DOM.menuHome, DOM.Home]);
+                    break;
+                case 'words':
+                    $(DOM.menuWord).toggleClass('showing');
+                    $(DOM.Words).toggleClass('showing');
+                    $(DOM.words).toggleClass('showing');
+                    hideAllExcept([DOM.menuWord, DOM.Words, DOM.words]);
+                    break;
+                case 'plats':
                     $(DOM.menuPlat).toggleClass('showing');
                     $(DOM.plats).toggleClass('showing');
                     $(DOM.Plats).toggleClass('showing');
                     hideAllExcept([DOM.menuPlat, DOM.plats, DOM.Plats]);
                     break;
-                case 'tab':
+                case 'tabs':
                     $(DOM.menuTab).toggleClass('showing');
                     $(DOM.tabs).toggleClass('showing');
                     $(DOM.Tabs).toggleClass('showing');
@@ -115,6 +132,16 @@ define([
 
             // if target is showing, hide
             // else, show and
+        },
+
+        // WORDS
+
+        wordFind:function(e){
+
+            var word  = $(DOM.wordFind).val();
+            var model = new WordModel({ word:word });
+            var view  = new WordView({ model:model });
+
         },
 
         // TABS
