@@ -7,10 +7,11 @@ define([
     'templates',
     'models/plat',
     'views/plot/plot',
+    'views/plat.handle',
     'models/plot',
     'models/plots',
     'views/svg'
-], function ($, _, Backbone, JST, PlatModel, PlotView, PlotModel, PlotsCollection, SVGview) {
+], function ($, _, Backbone, JST, PlatModel, PlotView, PlatHandleView, PlotModel, PlotsCollection, SVGview) {
     'use strict';
 
     var PlatView = SVGview.extend({
@@ -61,10 +62,21 @@ define([
         // attach plots
         this.renderPlots();
 
+        // render handle
+        this.renderHandle();
+
         // preselect key plot
         this.$el.find('g[plot="5"]').click();   
 
-      }, 
+      },
+
+      renderHandle:function(){
+
+        var model  = new PlotModel(); model.plat = this;
+        var handle = new PlatHandleView({model:model});
+        this.$el.append(handle.render().el);
+
+      },
 
       renderPlots:function(){
 

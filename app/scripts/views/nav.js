@@ -108,7 +108,7 @@ define([
                 case 'home':
                     $(DOM.menuHome).toggleClass('showing');
                     $(DOM.Home).toggleClass('showing');
-                    hideAllExcept([DOM.menuHome, DOM.Home]);
+                    hideAllExcept([DOM.menuHome, DOM.Home, DOM.home]);
                     break;
                 case 'words':
                     $(DOM.menuWord).toggleClass('showing');

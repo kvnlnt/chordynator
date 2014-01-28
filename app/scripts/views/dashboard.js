@@ -18,9 +18,6 @@ define([
             // render on load
             this.render();
 
-            // hack : change to load plats from local storage
-            var plat_view = new PlatView();
-
         },
 
         render: function(){

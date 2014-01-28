@@ -21,8 +21,7 @@
 }
 
 #Nav .menu ul li {
-    /*width: 25%;*/
-    width: 33.3333333%;
+    width: 25%;
     background-color: #040F17;
     color:#5884A1;
     cursor:pointer;
