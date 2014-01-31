@@ -31,10 +31,14 @@
 
 .tab text.chord {
     font-family: 'Quantico';
-    fill: #FFFFFF;
+    fill: #1B6BA1;
     font-size: 0.5rem;
-    pointer-events: none;
     text-anchor: middle;
+    cursor: pointer;
+}
+
+.tab text.chord:hover {
+    fill:#FFFFFF;
 }
 
 .tab image.remove {

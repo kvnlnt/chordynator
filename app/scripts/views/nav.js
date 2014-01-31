@@ -36,7 +36,6 @@ define([
             // register subs
             Backbone.pubSub.on("plot:clicked", this.tabFinderTextUpdate, this);
             Backbone.pubSub.on("plot:clicked", this.tabHint, this);
-            Backbone.pubSub.on('message:broadcast', this.message, this);
 
         },
 
@@ -62,33 +61,6 @@ define([
 
         },
 
-        // MESSAGING
-
-        message:function(msg){
-
-            // template
-            var template = JST['app/scripts/templates/message.ejs'];
-
-            // attach notes
-            var message = template({ title:msg.title, message:msg.message });
-
-            // add to dom
-            $("#Main").append(message);
-
-            // hide automatically after time
-            var timeout = setTimeout(function(){ 
-                $("#Message").fadeOut( "slow", function() {
-                    this.remove();
-                });
-            }, msg.time);
-
-            // remove on click
-            $("#Message").on('click',function(){ 
-                this.remove(); 
-                clearTimeout(timeout); 
-            });
-
-        },
 
         // SUBNAV
 
@@ -138,7 +110,8 @@ define([
 
         wordFind:function(e){
 
-            var word  = $(DOM.wordFind).val();
+            var word  = $(DOM.wordFind).val().toLowerCase();
+            if(!word.length) return false;
             var model = new WordModel({ word:word });
             var view  = new WordView({ model:model });
 
@@ -243,8 +216,8 @@ define([
 
             } else {
 
-                var msg = { title:'Whoops!', message:'The chord you entered was not found.', time:2000}
-                Backbone.pubSub.trigger('message:broadcast', msg);
+                var msg = { title:'Whoops!', message:'The chord you entered was not found.', timeout:2000}
+                Backbone.pubSub.trigger('message:showTemporary', msg);
 
             }
 
@@ -320,10 +293,6 @@ define([
 
             // add to main template
             $('#Main').append(this.$el);
-
-            // debugging
-            // $(DOM.tabFind).val('B');
-            // setTimeout(function(){ $(DOM.tabAdd).click(); }, 100);
 
         }
 

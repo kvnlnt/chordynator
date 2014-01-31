@@ -47,8 +47,7 @@ define([
 
             // register event object
             var e = {
-                'dblclick'  : 'nextChord',
-                'click'     : 'plotClicked'
+                'click' : 'plotClicked'
             };
 
             // return event object
@@ -108,6 +107,11 @@ define([
 
             // get elements
             var plot = e.currentTarget;
+
+            // if active, show next chord plot
+            if(_.contains(plot.className.baseVal.split(" "), "active")) this.nextChord(e);
+
+            // get plat
             var plat = $(plot).parents('svg');
 
             // deactive all plots

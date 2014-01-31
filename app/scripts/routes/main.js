@@ -5,8 +5,9 @@ define([
     'backbone',
     'views/nav',
     'views/dashboard',
-    'views/home'
-], function ($, Backbone, NavView, DashboardView, HomeView) {
+    'views/home',
+    'views/message'
+], function ($, Backbone, NavView, DashboardView, HomeView, MessageView) {
     'use strict';
 
     var MainRouter = Backbone.Router.extend({
@@ -19,6 +20,7 @@ define([
             var nav = new NavView();
             var dashboard = new DashboardView();
             var home = new HomeView();
+            var msg = new MessageView();
         }
 
     });

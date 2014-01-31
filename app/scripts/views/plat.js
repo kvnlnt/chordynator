@@ -7,7 +7,7 @@ define([
     'templates',
     'models/plat',
     'views/plot/plot',
-    'views/plat.handle',
+    'views/handle',
     'models/plot',
     'models/plots',
     'views/svg'
