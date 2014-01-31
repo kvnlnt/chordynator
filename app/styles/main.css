@@ -4,6 +4,7 @@ html, body {
     height:100%;
     margin: 0;
     padding: 0;
+    font-size: 1rem;
 }
 
 a {
@@ -34,6 +35,22 @@ a:hover {
   font-size: 1rem;
 }
 
+/*Placeholder styling*/
+::-webkit-input-placeholder {
+  opacity: 0.4;
+}
+
+:-moz-placeholder {
+  opacity: 0.4;
+}
+
+::-moz-placeholder {
+  opacity: 0.4;
+}
+
+:-ms-input-placeholder {
+  opacity: 0.4;
+}
 
 /* Drag styles */
 body.dragging, body.dragging * {

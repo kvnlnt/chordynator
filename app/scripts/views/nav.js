@@ -45,16 +45,17 @@ define([
             var e = {};
 
             // dynamically named events
-            e['click '  + DOM.menuHome] = 'subNav';
-            e['click '  + DOM.menuWord] = 'subNav';
-            e['click '  + DOM.menuPlat] = 'subNav';
-            e['click '  + DOM.menuTab]  = 'subNav';
-            e['click '  + DOM.wordAdd]  = 'wordFind';
-            e['click '  + DOM.platsKey] = 'platAdd';
-            e['click '  + DOM.tabAdd]   = 'tabAdd';
-            e['focus '  + DOM.tabFind]  = 'tabHint';
-            e['keyup '  + DOM.tabFind]  = 'tabHint';
-            e['click '  + DOM.tabHints] = 'tabHintClick';
+            e['click '   + DOM.menuHome] = 'subNav';
+            e['click '   + DOM.menuWord] = 'subNav';
+            e['click '   + DOM.menuPlat] = 'subNav';
+            e['click '   + DOM.menuTab]  = 'subNav';
+            e['click '   + DOM.wordAdd]  = 'wordFind';
+            e['click '   + DOM.platsKey] = 'platAdd';
+            e['click '   + DOM.tabAdd]   = 'tabAdd';
+            e['focus '   + DOM.tabFind]  = 'tabHint';
+            e['keyup '   + DOM.tabFind]  = 'tabHint';
+            e['keydown ' + DOM.tabFind]  = 'tabFindFormatter';
+            e['click '   + DOM.tabHints] = 'tabHintClick';
 
             // return object
             return e;
@@ -86,6 +87,7 @@ define([
                     $(DOM.menuWord).toggleClass('showing');
                     $(DOM.Words).toggleClass('showing');
                     $(DOM.words).toggleClass('showing');
+                    if($(DOM.menuWord).hasClass('showing')) $(DOM.wordFind).trigger('focus');
                     hideAllExcept([DOM.menuWord, DOM.Words, DOM.words]);
                     break;
                 case 'plats':
@@ -98,6 +100,7 @@ define([
                     $(DOM.menuTab).toggleClass('showing');
                     $(DOM.tabs).toggleClass('showing');
                     $(DOM.Tabs).toggleClass('showing');
+                    if($(DOM.menuTab).hasClass('showing')) $(DOM.tabFind).trigger('focus');
                     hideAllExcept([DOM.menuTab, DOM.tabs, DOM.Tabs]);
                     break;
             }
@@ -117,23 +120,38 @@ define([
 
         },
 
+        wordFindFocus:function(e){
+
+            $(DOM.wordFind).trigger('click');
+
+        },
+
         // TABS
 
-        tabFindFormatter:function(){
+        tabFindFormatter:function(e){
 
             // cap first string
-            var string = $(DOM.tabFind).val();
-                string = string.charAt(0).toUpperCase() + string.slice(1);
+            var value = $(DOM.tabFind).val();
 
-            // reset value
-            $(DOM.tabFind).val(string);
+            // only do this business if it's the first letter
+            if(value.length <= 0){
+
+                // get character entered
+                var key = String.fromCharCode(e.keyCode);
+
+                // reset value
+                $(DOM.tabFind).val(key);
+
+                // prevent default
+                e.preventDefault();
+
+            }            
 
         },
 
         tabHint:function(){
 
             // visual formatter
-            this.tabFindFormatter();
 
             // now do internal formatting 
             var text  = $(DOM.tabFind).val().replace("*","dim");
