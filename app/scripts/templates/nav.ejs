@@ -15,10 +15,23 @@
 </div>
 
 <div class="plats">
-    <ul class="items">
+    <ul class="items keys bases">
         <% for(var key in keys) { %>
         <li><a class="item key" data-key="<%= keys[key] %>"><%= keys[key] %></a></li>
         <% } %>
+        <li><a class="item next">+</a></li>
+    </ul>
+    <ul class="items keys prev">
+        <% for(var key in keys) { %>
+        <li><a class="item key" data-key="<%= keys[key] %>b"><%= keys[key] %>♭</a></li>
+        <% } %>
+        <li><a class="item next">+</a></li>
+    </ul>
+    <ul class="items keys sharps">
+        <% for(var key in keys) { %>
+        <li><a class="item key" data-key="<%= keys[key] %>#"><%= keys[key] %>♯</a></li>
+        <% } %>
+        <li><a class="item next">+</a></li>
     </ul>
 </div>
 

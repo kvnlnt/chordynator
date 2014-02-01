@@ -51,6 +51,7 @@ define([
             e['click '   + DOM.menuTab]  = 'subNav';
             e['click '   + DOM.wordAdd]  = 'wordFind';
             e['click '   + DOM.platsKey] = 'platAdd';
+            e['click '   + DOM.platNext] = 'platShowNextKeys';
             e['click '   + DOM.tabAdd]   = 'tabAdd';
             e['focus '   + DOM.tabFind]  = 'tabHint';
             e['keyup '   + DOM.tabFind]  = 'tabHint';
@@ -69,6 +70,9 @@ define([
 
             var item  = $(e.target).attr('item');
             var items = [DOM.menuHome, DOM.Home, DOM.menuWord, DOM.Words, DOM.words, DOM.Plats, DOM.menuPlat, DOM.Tabs, DOM.menuTab, DOM.plats, DOM.tabs];
+
+            // GA: log page views
+            ga('send', 'event', 'page', 'view', 'page', item);
 
             function hideAllExcept(els){
                 items.filter(function(item){ 
@@ -105,8 +109,6 @@ define([
                     break;
             }
 
-            // if target is showing, hide
-            // else, show and
         },
 
         // WORDS
@@ -273,7 +275,7 @@ define([
         platCreate:function(key){
 
             // create unique id
-            var id = 'plat'+key;
+            var id = 'plat'+key.replace("#", "_sharp");
 
             // create unique model and add to collection
             var model = new PlatModel({ id:id, key:key });
@@ -291,13 +293,30 @@ define([
         platRemove:function(key){
 
             // get model by id
-            var id    = 'plat'+key;
+            var id    = 'plat'+key.replace("#", "_sharp");
             var model = this.platModelCollection.get(id);
                 this.platModelCollection.remove(model);
 
             // broadcast for localized garbage collection
             Backbone.pubSub.trigger('plat:destroy', id); 
             
+        },
+
+        // toggle plat key nav lists backwards
+        platShowNextKeys:function(e){
+
+            // get lists
+            var lists = $(".plats .keys");
+
+            // get the first element
+            var first_li = $(lists[0]);
+
+            // get last
+            var last_li = $(lists[2]);
+            
+            // send first element to end
+            first_li.insertAfter(last_li);
+
         },
 
         // render the nav

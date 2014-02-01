@@ -21,6 +21,7 @@ define(function () {
         Plats:    '#Plats',
         plats:    '.plats',
         platsKey: '.plats .key',
+        platNext: '.plats .next',
 
         Tabs:     '#Tabs',
         tabs:     '.tabs',
