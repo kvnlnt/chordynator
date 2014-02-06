@@ -62,6 +62,12 @@
 .tab line.string {
     stroke: #1B6BA1;
     stroke-width: 0.6;
+    opacity:0.5;
+}
+
+.tab line.string.open,
+.tab line.string.fingered {
+    opacity: 1;
 }
 
 .tab line.string.muted {
@@ -81,7 +87,7 @@
     font-size: 0.35rem;
     pointer-events: none;
     text-anchor: middle;
-    opacity:0.3;
+    opacity:0.6;
 }
 
 .tab circle.finger {

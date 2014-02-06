@@ -37,6 +37,7 @@ define([
             $("#Plats").sortable({
                 containerSelector:'#Plats',
                 itemSelector:'div.plat',
+                handle:'image',
                 placeholder: '<div class="plat placeholder"/>'
             });
 

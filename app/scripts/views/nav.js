@@ -147,13 +147,19 @@ define([
                 // prevent default
                 e.preventDefault();
 
-            }            
+            } else {
+
+                var capitalized = value.charAt(0).toUpperCase() + value.slice(1);
+                $(DOM.tabFind).val(capitalized);
+
+            }     
 
         },
 
-        tabHint:function(){
+        tabHint:function(e){
 
             // visual formatter
+            this.tabFindFormatter(e);
 
             // now do internal formatting 
             var text  = $(DOM.tabFind).val().replace("*","dim");

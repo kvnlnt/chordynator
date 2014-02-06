@@ -41,7 +41,7 @@ define([
         nextVariation:function(){
 
             // calc next variation
-            var variation = this.get('variation') >= this.get('variations').length ? 0 : this.get('variation') + 1;
+            var variation = this.get('variation') >= this.get('variations').length-1 ? 0 : this.get('variation') + 1;
 
             // set new variation
             this.set('variation', variation);

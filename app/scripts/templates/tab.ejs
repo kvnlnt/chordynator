@@ -11,12 +11,17 @@
         <!-- Frets -->
         <% _.each(frets, function(fret, index){ %>
             <line x1="<%= fret.x %>" y1="15" x2="<%= fret.x %>" y2="42" class="fret"></line>
-            <text x="<%= fret.x + 4 %>" y="42" class="fret-number"><%= fret.number %></text>
+            <text x="<%= fret.x + 5 %>" y="42" class="fret-number"><%= fret.number %></text>
         <% }); %>
 
         <!-- Strings -->
         <% _.each(strings, function(string, index){ %>
             <line x1="12" y1="<%= string.y %>" x2="88" y2="<%= string.y %>" class="string <%= string.state %>"></line>
+        <% }); %>
+
+        <!-- Strings Played -->
+         <% _.each(fingers, function(finger, index){ %>
+            <line x1="12" y1="<%= finger.y %>" x2="<%= finger.x %>" y2="<%= finger.y %>" class="string fingered"></line>
         <% }); %>
 
         <!-- Fingers -->
