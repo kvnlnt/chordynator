@@ -1,0 +1,29 @@
+#Words {
+    display: block;
+    opacity: 0; 
+    height: 0;
+    overflow: hidden;
+}
+
+#Words.showing {
+    -webkit-transition: opacity 2s ease-out;
+    opacity: 1;
+    height: auto;
+}
+
+#Words {
+    font-family: 'Quantico';
+}
+
+#Words h2 {
+    font-size:1.25rem;
+    color:#1B6BA1;
+}
+
+#Words p {
+    font-family: 'Arial';
+    font-size: 0.75rem;
+    color: #FFFFFF;
+    padding:0 2rem 1rem;
+    color:#FFFFFF;
+}

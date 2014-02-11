@@ -1,0 +1,35 @@
+#Message {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #05141E;
+    color:#FFFFFF;
+    text-align: center;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity 0.5s ease-out;
+
+}
+
+#Message.showing {
+    visibility:visible;
+    -webkit-transition: opacity 0.5s ease-out;
+    opacity: 1;
+}
+
+#Message .title {
+    font-family: 'Quantico';
+    font-size: 2rem;
+    color: #1B6BA1;
+    padding:2rem 2rem 0;
+}
+
+#Message .message {
+    font-family: 'Quantico';
+    font-size: 1rem;
+    color: #FFFFFF;
+    padding:1rem 2rem;
+}

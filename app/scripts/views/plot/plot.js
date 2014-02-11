@@ -109,19 +109,26 @@ define([
             var plot = e.currentTarget;
 
             // if active, show next chord plot
-            if(_.contains(plot.className.baseVal.split(" "), "active")) this.nextChord(e);
+            if(_.contains(plot.className.baseVal.split(" "), "active")) {
 
-            // get plat
-            var plat = $(plot).parents('svg');
+                // show next chord
+                this.nextChord(e);
+                
+            } else {
 
-            // deactive all plots
-            this.deactivateAll(plat);
+                // get plat
+                var plat = $(plot).parents('svg');
 
-            // activate
-            this.activate(plot, plat);
+                // deactive all plots
+                this.deactivateAll(plat);
 
-            // publish
-            Backbone.pubSub.trigger(this.model.pubs.plotClicked, this.model);
+                // activate
+                this.activate(plot, plat);
+
+                // publish
+                Backbone.pubSub.trigger(this.model.pubs.plotClicked, this.model);
+
+            }
 
         },
 

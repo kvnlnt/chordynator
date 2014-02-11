@@ -1,0 +1,65 @@
+#Home {
+    display: block;
+    opacity: 0; 
+    height: 0;
+    overflow: hidden;
+}
+
+#Home.showing {
+    -webkit-transition: opacity 2s ease-out;
+    opacity: 1;
+    height: auto;
+}
+
+#Home img{
+    width:100%;
+    max-width: 500px;
+}
+
+#Home .menu {
+    padding:0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+}
+
+#Home .menu li {
+    display: inline-block;
+    width:5rem;
+    margin:0 0.25rem;
+}
+
+#Home .menu li a {
+    display: block;
+    width:100%;
+    font-family: 'Quantico';
+    color: #1B6BA1;
+    font-size: 0.85rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    border:1px solid #1B6BA1;
+    line-height: 2rem;
+    border-radius:0.25rem;
+}
+
+#Home .menu li a:hover {
+    color: #FFFFFF;
+}
+
+#Home .about {
+    display: block;
+    opacity: 0; 
+    height: 0;
+    overflow: hidden;
+    font-family: 'Arial';
+    width: 85%;
+    font-size: 0.75rem;
+    color: #FFFFFF;
+    margin:1rem auto;
+}
+
+#Home .about.showing {
+    -webkit-transition: opacity 2s ease-out;
+    opacity: 1;
+    height: auto;
+}
