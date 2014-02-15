@@ -4,8 +4,9 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'templates'
-], function ($, _, Backbone, JST) {
+    'templates',
+    'elements/nav'
+], function ($, _, Backbone, JST, NavDOM) {
     'use strict';
 
     var WordView = Backbone.View.extend({
@@ -24,9 +25,11 @@ define([
             // events container
             var e = {};
 
-            e['click #Home .menu'] = 'showAbout';
-
-            $("#Home .menu").on('click', this.showAbout);
+            $("#Home .menuHowTo").on('click', this.showAbout);
+            $("#Home .menuMaps").on('click', function(){ $(NavDOM.menuPlat).click(); });
+            $("#Home .menuTabs").on('click', function(){ $(NavDOM.menuTab).click(); });
+            $("#Home .menuWords").on('click', function(){ $(NavDOM.menuWord).click(); });
+            $("#Home .menuPrimers").on('click', function(){ $(NavDOM.menuPrimer).click(); });
 
             // return object
             return e;

@@ -6,10 +6,11 @@ define(function () {
     // dom els
     var dom = {
 
-        menuHome: '.menu > ul.items > li > a.nav_home',
-        menuPlat: '.menu > ul.items > li > a.nav_plats',
-        menuTab:  '.menu > ul.items > li > a.nav_tabs',
-        menuWord: '.menu > ul.items > li > a.nav_words',
+        menuHome:   '.menu > ul.items > li > a.nav_home',
+        menuPlat:   '.menu > ul.items > li > a.nav_plats',
+        menuTab:    '.menu > ul.items > li > a.nav_tabs',
+        menuWord:   '.menu > ul.items > li > a.nav_words',
+        menuPrimer: '.menu > ul.items > li > a.nav_primers',
 
         Home:     '#Home',
 
@@ -28,7 +29,10 @@ define(function () {
         tabFind:  '.tabs .find input',
         tabItems: '.tabs .items',
         tabHints: '.tabs .hint',
-        tabAdd:   '.tabs .add a'
+        tabAdd:   '.tabs .add a',
+
+        Primers:  '#Primers',
+        primers:  '.primers'
 
     };
 

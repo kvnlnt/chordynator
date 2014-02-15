@@ -214,13 +214,26 @@ define([
 
         // "normalize note"...translate it from double sharp or double flat
         normalize: function(note){
+
             //var note = charUnicode(note);
             var match = note.match('x|##|bb');
+
+            // double accidental?
             if(!match){
+
+                // basic translations
+                note = note.replace("B#", "C").replace("Cb", "B").replace("E#", "F").replace("Fb", "E");
+
+                // return translation
                 return note;
+
             } else {
+
+                // return normalized note
                 return match == '##' || match == 'x' ? this.normalizeDoubleSharp(note) : this.normalizeDoubleFlat(note);
+
             }
+
         },
 
         // sharpen note

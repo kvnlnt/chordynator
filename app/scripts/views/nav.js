@@ -9,13 +9,15 @@ define([
     'views/plat',
     'views/tab',
     'views/word',
+    'views/primer',
     'models/plat',
     'models/plats',
     'models/key',
     'models/tab',
     'models/word',
-    'models/jtab'
-], function ($, _, Backbone, JST, DOM, PlatView, TabView, WordView, PlatModel, PlatModelCollection, KeyModel, TabModel, WordModel, jTabModel) {
+    'models/jtab',
+    'models/primer'
+], function ($, _, Backbone, JST, DOM, PlatView, TabView, WordView, PrimerView, PlatModel, PlatModelCollection, KeyModel, TabModel, WordModel, jTabModel, PrimerModel) {
 
     'use strict';
 
@@ -43,20 +45,23 @@ define([
 
             // events container
             var e = {};
+            var that = this;
 
             // dynamically named events
-            e['click '   + DOM.menuHome] = 'subNav';
-            e['click '   + DOM.menuWord] = 'subNav';
-            e['click '   + DOM.menuPlat] = 'subNav';
-            e['click '   + DOM.menuTab]  = 'subNav';
-            e['click '   + DOM.wordAdd]  = 'wordFind';
-            e['click '   + DOM.platsKey] = 'platAdd';
-            e['click '   + DOM.platNext] = 'platShowNextKeys';
-            e['click '   + DOM.tabAdd]   = 'tabAdd';
-            e['focus '   + DOM.tabFind]  = 'tabHint';
-            e['keyup '   + DOM.tabFind]  = 'tabHint';
-            e['keydown ' + DOM.tabFind]  = 'tabFindFormatter';
-            e['click '   + DOM.tabHints] = 'tabHintClick';
+            e['click '   + DOM.menuHome]    = 'subNav';
+            e['click '   + DOM.menuWord]    = 'subNav';
+            e['click '   + DOM.menuPlat]    = 'subNav';
+            e['click '   + DOM.menuTab]     = 'subNav';
+            e['click '   + DOM.menuPrimer]  = 'subNav';
+            e['click '   + DOM.menuPrimer]  =  function(e){ that.subNav(e); that.primersLoad(e); };
+            e['click '   + DOM.wordAdd]     = 'wordFind';
+            e['click '   + DOM.platsKey]    = 'platAdd';
+            e['click '   + DOM.platNext]    = 'platShowNextKeys';
+            e['click '   + DOM.tabAdd]      = 'tabAdd';
+            e['focus '   + DOM.tabFind]     = 'tabHint';
+            e['keyup '   + DOM.tabFind]     = 'tabHint';
+            e['keydown ' + DOM.tabFind]     = 'tabFindFormatter';
+            e['click '   + DOM.tabHints]    = 'tabHintClick';
 
             // return object
             return e;
@@ -69,7 +74,7 @@ define([
         subNav:function(e){
 
             var item  = $(e.target).attr('item');
-            var items = [DOM.menuHome, DOM.Home, DOM.menuWord, DOM.Words, DOM.words, DOM.Plats, DOM.menuPlat, DOM.Tabs, DOM.menuTab, DOM.plats, DOM.tabs];
+            var items = [DOM.menuHome, DOM.Home, DOM.menuWord, DOM.Words, DOM.words, DOM.Plats, DOM.menuPlat, DOM.Tabs, DOM.menuTab, DOM.plats, DOM.tabs, DOM.menuPrimer, DOM.Primers, DOM.primers];
 
             // GA: log page views
             ga('send', 'event', 'page', 'view', 'page', item);
@@ -106,6 +111,12 @@ define([
                     $(DOM.Tabs).toggleClass('showing');
                     if($(DOM.menuTab).hasClass('showing')) $(DOM.tabFind).trigger('focus');
                     hideAllExcept([DOM.menuTab, DOM.tabs, DOM.Tabs]);
+                    break;
+                case 'primers':
+                    $(DOM.menuPrimer).toggleClass('showing');
+                    $(DOM.primers).toggleClass('showing');
+                    $(DOM.Primers).toggleClass('showing');
+                    hideAllExcept([DOM.menuPrimer, DOM.primers, DOM.Primers]);
                     break;
             }
 
@@ -207,9 +218,22 @@ define([
 
         // updates tab finder text on plot:clicked event usually
         tabFinderTextUpdate:function(plot){
+
+            // get a copy of the key model so we can use some of it' normalization features
+            var key = new KeyModel();
+
+            // find the chord passed by the event object
             var chord = (plot.chord.note + plot.chord.type).replace('M','');
+
+            // normalize the chord string
+            var chord = key.normalize(chord);
+
+            // update the text input box with the chord string
             $(DOM.tabFind).val(chord);
+
+            // return chord
             return chord;
+
         },
 
         // add tab to dashboard
@@ -322,6 +346,15 @@ define([
             
             // send first element to end
             first_li.insertAfter(last_li);
+
+        },
+
+        // PRIMERS
+
+        primersLoad:function(){
+
+            var model = new PrimerModel();
+            var view  = new PrimerView({ model:model });
 
         },
 

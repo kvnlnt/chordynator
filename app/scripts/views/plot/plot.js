@@ -105,6 +105,9 @@ define([
 
         plotClicked:function(e){
 
+            // stop propogation
+            e.preventDefault();
+
             // get elements
             var plot = e.currentTarget;
 

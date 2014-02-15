@@ -11,7 +11,7 @@
 }
 
 #Nav ul li {
-    font-size: .75rem;
+    font-size: 1.25rem;
     display: block;
     float: left;
     text-align: center;
@@ -20,8 +20,12 @@
     line-height: 3rem;
 }
 
+#Nav ul li i {
+    pointer-events:none;
+}
+
 #Nav .menu ul li {
-    width: 25%;
+    width:20%;
     background-color: #040F17;
     color:#5884A1;
     cursor:pointer;
@@ -46,7 +50,7 @@
     display: block;
 }
 
-#Nav .menu .items .nav_comps:before,
+/*#Nav .menu .items .nav_comps:before,
 #Nav .menu .items .nav_plats:before,
 #Nav .menu .items .nav_tabs:before,
 #Nav .menu .items .nav_words:before {
@@ -58,7 +62,7 @@
 #Nav .menu .items .nav_tabs.showing:before,
 #Nav .menu .items .nav_words.showing:before {
     content:'- ';
-}
+}*/
 
 #Nav .plats {
     height: 0;
@@ -95,8 +99,17 @@
     transition: background-color 0.5s;
 }
 
+#Nav .plats ul li a sup {
+    vertical-align: middle;
+}
+
+#Nav .plats ul.flats li a sup{
+    margin-left:-0.15rem;
+}
+
 #Nav .tabs,
-#Nav .words {
+#Nav .words,
+#Nav .primers {
     background-color: #1B6BA1;
     height: 0;
     overflow: hidden;
@@ -107,7 +120,8 @@
 }
 
 #Nav .tabs.showing,
-#Nav .words.showing {
+#Nav .words.showing,
+#Nav .primers.showing {
     height: 3rem;
     transition: height 0.5s;
 }

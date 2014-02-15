@@ -1,9 +1,17 @@
 <div class="menu">
     <ul class="items">
-        <li><a class="item nav_home showing" item="home">home</a></li>
-        <li><a class="item nav_plats" item="plats">maps</a></li>
-        <li><a class="item nav_tabs"  item="tabs">tabs</a></li>
-        <li><a class="item nav_words" item="words">words</a></li>
+        <li><a class="item nav_home showing" item="home"><i class="fa fa-home"></i></a></li>
+        <li><a class="item nav_plats"  item="plats"><i class="fa fa-sitemap"></i></a></li>
+        <li><a class="item nav_tabs"   item="tabs"><i class="fa fa-search"></i></a></li>
+        <li><a class="item nav_words"  item="words"><i class="fa fa-pencil"></i></a></li>
+        <!-- <li><a class="item nav_scales" item="scales"><i class="fa fa-tasks"></i></a></li> -->
+        <li><a class="item nav_primers" item="primers"><i class="fa fa-flask"></i></a></li>
+    </ul>
+</div>
+
+<div class="primers">
+    <ul class="items">
+        <li class="item">Theory Primers</li>
     </ul>
 </div>
 
@@ -21,15 +29,15 @@
         <% } %>
         <li><a class="item next">+</a></li>
     </ul>
-    <ul class="items keys prev">
+    <ul class="items keys flats">
         <% for(var key in keys) { %>
-        <li><a class="item key" data-key="<%= keys[key] %>b"><%= keys[key] %>♭</a></li>
+        <li><a class="item key" data-key="<%= keys[key] %>b"><%= keys[key] %><sup>♭</sup></a></li>
         <% } %>
         <li><a class="item next">+</a></li>
     </ul>
     <ul class="items keys sharps">
         <% for(var key in keys) { %>
-        <li><a class="item key" data-key="<%= keys[key] %>#"><%= keys[key] %>♯</a></li>
+        <li><a class="item key" data-key="<%= keys[key] %>#"><%= keys[key] %><sup>♯</sup></a></li>
         <% } %>
         <li><a class="item next">+</a></li>
     </ul>

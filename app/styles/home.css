@@ -24,9 +24,19 @@
 }
 
 #Home .menu li {
-    display: inline-block;
-    width:5rem;
-    margin:0 0.25rem;
+    display: block;
+    width:80%;
+    max-width: 320px;
+    margin:0.25rem auto;
+    text-align: left;
+}
+
+#Home .menu li:nth-child(6) {
+    margin-top:1.5rem;
+}
+
+#Home .menu i {
+    margin:0 0.25rem 0 0.6rem;
 }
 
 #Home .menu li a {
