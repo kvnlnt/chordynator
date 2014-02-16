@@ -1,11 +1,47 @@
 <div class="menu">
     <ul class="items">
-        <li><a class="item nav_home showing" item="home"><i class="fa fa-home"></i></a></li>
-        <li><a class="item nav_plats"  item="plats"><i class="fa fa-sitemap"></i></a></li>
-        <li><a class="item nav_tabs"   item="tabs"><i class="fa fa-search"></i></a></li>
-        <li><a class="item nav_words"  item="words"><i class="fa fa-pencil"></i></a></li>
-        <!-- <li><a class="item nav_scales" item="scales"><i class="fa fa-tasks"></i></a></li> -->
-        <li><a class="item nav_primers" item="primers"><i class="fa fa-flask"></i></a></li>
+        <li><a class="item nav_home showing"    item="home">   <i class="fa fa-home"></i></a></li>
+        <li><a class="item nav_plats"           item="plats">  <i class="fa fa-sitemap"></i></a></li>
+        <li><a class="item nav_tabs"            item="tabs">   <i class="fa fa-search"></i></a></li>
+        <li><a class="item nav_words"           item="words">  <i class="fa fa-pencil"></i></a></li>
+        <li><a class="item nav_scales"          item="scales"> <i class="fa fa-tasks"></i></a></li>
+        <li><a class="item nav_primers"         item="primers"><i class="fa fa-flask"></i></a></li>
+    </ul>
+</div>
+
+<div class="scales">
+    <ul class="items">
+        <li class="item">
+            <select id="ScaleKey">
+                <!-- 'A','A#/Bb', 'B', 'C','C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab' -->
+                <option value="key">Key</option>
+                <option value="C">C</option>
+                <option value="C#/Db">C#/Db</option>
+                <option value="D">D</option>
+                <option value="D#/Eb">D#/Eb</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="F#/Gb">F#/Gb</option>
+                <option value="G">G</option>
+                <option value="G#/Ab">G#/Ab</option>
+                <option value="A">A</option>
+                <option value="A#/Bb">A#/Bb</option>
+                <option value="B">B</option>
+            </select>
+        </li>
+        <li class="item">
+            <select id="ScaleType">
+                <option value="scale">Scale</option>
+                <option value="major">Major</option>
+                <option value="natural_minor">Natural Minor</option>
+                <option value="harmonic_minor">Harmonic Minor</option>
+                <option value="melodic_minor">Melodic Minor</option>
+                <option value="dorian_mode">Dorian Mode</option>
+                <option value="mixolydian_mode">Mixolydian Mode</option>
+                <option value="blues">Blues</option>
+            </select>
+        </li>
+        <li class="item add"><a>+</a></li>
     </ul>
 </div>
 

@@ -41,6 +41,14 @@ define([
                 placeholder: '<div class="plat placeholder"/>'
             });
 
+            // register other behaviors
+            $("#Scales").sortable({
+                containerSelector:'#Scales',
+                itemSelector:'div.scale',
+                handle:'image',
+                placeholder: '<div class="scale placeholder"/>'
+            });
+
         }
 
     });

@@ -11,6 +11,7 @@ define(function () {
         menuTab:    '.menu > ul.items > li > a.nav_tabs',
         menuWord:   '.menu > ul.items > li > a.nav_words',
         menuPrimer: '.menu > ul.items > li > a.nav_primers',
+        menuScale:  '.menu > ul.items > li > a.nav_scales',
 
         Home:     '#Home',
 
@@ -30,6 +31,10 @@ define(function () {
         tabItems: '.tabs .items',
         tabHints: '.tabs .hint',
         tabAdd:   '.tabs .add a',
+
+        Scales:   '#Scales',
+        scales:   '.scales',
+        scaleAdd: '.scales .add a',
 
         Primers:  '#Primers',
         primers:  '.primers'

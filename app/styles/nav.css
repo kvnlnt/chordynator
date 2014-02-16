@@ -25,7 +25,7 @@
 }
 
 #Nav .menu ul li {
-    width:20%;
+    width:16.66666666%;
     background-color: #040F17;
     color:#5884A1;
     cursor:pointer;
@@ -109,7 +109,8 @@
 
 #Nav .tabs,
 #Nav .words,
-#Nav .primers {
+#Nav .primers,
+#Nav .scales {
     background-color: #1B6BA1;
     height: 0;
     overflow: hidden;
@@ -121,7 +122,8 @@
 
 #Nav .tabs.showing,
 #Nav .words.showing,
-#Nav .primers.showing {
+#Nav .primers.showing,
+#Nav .scales.showing {
     height: 3rem;
     transition: height 0.5s;
 }
@@ -194,7 +196,8 @@
 
 #Nav .tabs .add a,
 #Nav .words .add a,
-#Nav .tabs .hint a {
+#Nav .tabs .hint a,
+#Nav .scales .add a {
     font-family: 'Verdana';
     text-align: center;
     width:100%;
@@ -203,11 +206,12 @@
     font-size: 0.75rem;
     display: block;
     color:#FFFFFF;
-}
+}s
 
-#Nav .tabs .add a:hover,
-#Nav .words .add a:hover,
-#Nav .tabs .hint a:hover {
+#Nav .tabs   .add  a:hover,
+#Nav .words  .add  a:hover,
+#Nav .tabs   .hint a:hover,
+#Nav .scales .add  a:hover {
     background-color: #2878AD;
     transition: background-color 0.5s;
 }

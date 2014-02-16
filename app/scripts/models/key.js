@@ -10,16 +10,17 @@ define([
 
         defaults: {
             key: 'C',
-            notation:{
-                roots: ['C','D','E','F','G','A','B'], // C natural major scale
-                steps: [2,2,1,2,2,2,1],               // major intervals
-                accidentals: ['bb','b','','#','x']    // note accidentals 
-            }
+            type:'major',
+            steps:[2,2,1,2,2,2,1],
+            roots:['C','D','E','F','G','A','B'],
+            accidentals:['bb','b','','#','x']
         },
 
         initialize: function(){
-            this.set('key', this.normalize(this.get('key'))); // normalize key
-            // console.log(this.get('key'));
+
+            // set defaults
+            this.set({ key: this.normalize(this.get('key')) }); // normalize key
+
         },
 
         // Calculate key chords and notes
@@ -27,20 +28,20 @@ define([
 
             // basic params
             var name = this.get('key').charAt(0);
-            var name_pos = this.get('notation').roots.indexOf(name);
+            var name_pos = this.get('roots').indexOf(name);
             var acc = this.get('key').charAt(1);
-            var acc_index = this.get('notation').accidentals.indexOf(acc);
+            var acc_index = this.get('accidentals').indexOf(acc);
             var acc_offset = acc_index - 2 < 0 ? 3 + acc_index : acc_index - 2;
             var acc_pos = 2;
             var notes = [];
 
             // copy original arrays for manipulation
-            var dataAcc = this.get('notation').accidentals.slice(0); 
-            var dataRoots = this.get('notation').roots.slice(0);
-            var dataSteps = this.get('notation').steps.slice(0);
+            var dataAcc   = this.get('accidentals').slice(0); 
+            var dataRoots = this.get('roots').slice(0);
+            var dataSteps = this.get('steps').slice(0);
 
             // create internal array maps
-            var accMap = dataAcc.concat(dataAcc.splice(0,acc_offset)); // rearrange so accidental is in middle
+            var accMap  = dataAcc.concat(dataAcc.splice(0,acc_offset)); // rearrange so accidental is in middle
             var noteMap = dataRoots.concat(dataRoots.splice(0,name_pos)); // rearrange so notes are in order
             var stepMap = dataSteps.concat(dataSteps.splice(0,name_pos)); // rearrange to steps map new note order
 
@@ -48,7 +49,7 @@ define([
             for(var i = 0; i < noteMap.length; i++){
 
                 // compare current step to original
-                var offset = this.get('notation').steps[i] - stepMap[i];
+                var offset = this.get('steps')[i] - stepMap[i];
 
                 // get data
                 var name = noteMap[i];
@@ -151,9 +152,9 @@ define([
         getListOfKeys: function(){
 
             var keys = [];
-            for(var i in this.get('notation').roots){
+            for(var i in this.get('roots')){
                 for(var j = 1; j < 4; j++){
-                    keys.push(this.get('notation').roots[i] + this.get('notation').accidentals[j]);
+                    keys.push(this.get('roots')[i] + this.get('accidentals')[j]);
                 }
             }
 
@@ -182,13 +183,13 @@ define([
         normalizeDoubleSharp: function(note){
 
             var name = note.charAt(0);
-            var name_pos = this.get('notation').roots.indexOf(name);
-            var halfsteps = this.get('notation').steps[name_pos]; // next step
+            var name_pos = this.get('roots').indexOf(name);
+            var halfsteps = this.get('steps')[name_pos]; // next step
 
             if( halfsteps == 1){
-                note = name_pos == this.get('notation').roots.length - 1 ? this.get('notation').roots[0] + "#" : this.get('notation').roots[name_pos+1] + "#";
+                note = name_pos == this.get('roots').length - 1 ? this.get('roots')[0] + "#" : this.get('roots')[name_pos+1] + "#";
             } else {
-                note = name_pos == this.get('notation').roots.length - 1 ? this.get('notation').roots[0] : this.get('notation').roots[name_pos+1];
+                note = name_pos == this.get('roots').length - 1 ? this.get('roots')[0] : this.get('roots')[name_pos+1];
             }
 
             return note;
@@ -199,13 +200,13 @@ define([
         normalizeDoubleFlat: function(note){
 
             var name = note.charAt(0);
-            var name_pos = this.get('notation').roots.indexOf(name);
-            var halfsteps = name_pos == 0 ? this.get('notation').steps[this.get('notation').roots.length-1] : this.get('notation').steps[name_pos-1]; // prev step
+            var name_pos = this.get('roots').indexOf(name);
+            var halfsteps = name_pos == 0 ? this.get('steps')[this.get('roots').length-1] : this.get('steps')[name_pos-1]; // prev step
 
             if ( halfsteps == 1 ) {
-                note = name_pos == 0 ? this.get('notation').roots[this.get('notation').roots.length-1] + "b" : this.get('notation').roots[name_pos-1] + "b";
+                note = name_pos == 0 ? this.get('roots')[this.get('roots').length-1] + "b" : this.get('roots')[name_pos-1] + "b";
             } else {
-                note = name_pos == 0 ? this.get('notation').roots[this.get('notation').roots.length-1] : this.get('notation').roots[name_pos-1];
+                note = name_pos == 0 ? this.get('roots')[this.get('roots').length-1] : this.get('roots')[name_pos-1];
             }
 
             return note;
@@ -240,23 +241,23 @@ define([
         sharpenNote: function(note){
 
             var name = note.charAt(0);
-            var name_pos = this.get('notation').roots.indexOf(name);
+            var name_pos = this.get('roots').indexOf(name);
             var acc = note.charAt(1);
-            var halfsteps = this.get('notation').steps[name_pos]; // next step
+            var halfsteps = this.get('steps')[name_pos]; // next step
             var sharpenedNote;
 
             // find next half step note by current notes step interval (either 1 or else 2)
             if ( halfsteps == 1 ) {
 
                 if (acc == 'b') sharpenedNote = name; // remove flat
-                if (acc == '') sharpenedNote = name_pos + 1 == this.get('notation').roots.length ? this.get('notation').roots[0] : this.get('notation').roots[name_pos + 1]; // get next note
-                if (acc == '#') sharpenedNote = name_pos + 1 == this.get('notation').roots.length ? this.get('notation').roots[0] + '#' : this.get('notation').roots[name_pos + 1] + '#'; // add sharp
+                if (acc == '') sharpenedNote = name_pos + 1 == this.get('roots').length ? this.get('roots')[0] : this.get('roots')[name_pos + 1]; // get next note
+                if (acc == '#') sharpenedNote = name_pos + 1 == this.get('roots').length ? this.get('roots')[0] + '#' : this.get('roots')[name_pos + 1] + '#'; // add sharp
 
             } else {
 
                 if (acc == 'b') sharpenedNote = name; // remove flat
                 if (acc == '') sharpenedNote = name + '#'; // add sharp
-                if (acc == '#') sharpenedNote = name_pos + 1 == this.get('notation').roots.length ? this.get('notation').roots[0] : this.get('notation').roots[name_pos + 1]; // get next note
+                if (acc == '#') sharpenedNote = name_pos + 1 == this.get('roots').length ? this.get('roots')[0] : this.get('roots')[name_pos + 1]; // get next note
 
             }
 
@@ -268,23 +269,23 @@ define([
         flattenNote: function(note){
 
             var name = note.charAt(0);
-            var name_pos = this.get('notation').roots.indexOf(name);
+            var name_pos = this.get('roots').indexOf(name);
             var acc = note.charAt(1);
-            var halfsteps = name_pos == 0 ? this.get('notation').steps[this.get('notation').roots.length-1] : this.get('notation').steps[name_pos-1]; // prev step
+            var halfsteps = name_pos == 0 ? this.get('steps')[this.get('roots').length-1] : this.get('steps')[name_pos-1]; // prev step
             var flattenedNote;
 
             // find next half step note by current notes step interval (either 1 or else 2)
             if ( halfsteps == 1 ) {
 
                 if (acc == '#') flattenedNote = name; // remove flat
-                if (acc == '') flattenedNote = name_pos == 0 ? this.get('notation').roots[this.get('notation').roots.length-1] : this.get('notation').roots[name_pos - 1]; // get next note
-                if (acc == 'b') flattenedNote = name_pos == 0 ? this.get('notation').roots[this.get('notation').roots.length-1] + 'b' : this.get('notation').roots[name_pos - 1] + 'b'; // add sharp
+                if (acc == '') flattenedNote = name_pos == 0 ? this.get('roots')[this.get('roots').length-1] : this.get('roots')[name_pos - 1]; // get next note
+                if (acc == 'b') flattenedNote = name_pos == 0 ? this.get('roots')[this.get('roots').length-1] + 'b' : this.get('roots')[name_pos - 1] + 'b'; // add sharp
 
             } else {
 
                 if (acc == '#') flattenedNote = name; // remove flat
                 if (acc == '') flattenedNote = name + 'b'; // add flat
-                if (acc == 'b') flattenedNote = name_pos == 0 ? this.get('notation').roots[this.get('notation').roots.length-1] : this.get('notation').roots[name_pos - 1]; // get prev note
+                if (acc == 'b') flattenedNote = name_pos == 0 ? this.get('roots')[this.get('roots').length-1] : this.get('roots')[name_pos - 1]; // get prev note
 
             }
 

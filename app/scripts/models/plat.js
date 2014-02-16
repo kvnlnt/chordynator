@@ -20,7 +20,7 @@ define([
         initialize:function(){
 
             // get plat key
-            var key = new Key({key:this.get('key')});
+            var key = new Key({ key:this.get('key') });
 
             // get key notes
             this.set('notes',  key.getNotes());

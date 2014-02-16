@@ -29,6 +29,7 @@ define([
             $("#Home .menuMaps").on('click', function(){ $(NavDOM.menuPlat).click(); });
             $("#Home .menuTabs").on('click', function(){ $(NavDOM.menuTab).click(); });
             $("#Home .menuWords").on('click', function(){ $(NavDOM.menuWord).click(); });
+            $("#Home .menuScales").on('click', function(){ $(NavDOM.menuScale).click(); });
             $("#Home .menuPrimers").on('click', function(){ $(NavDOM.menuPrimer).click(); });
 
             // return object

@@ -1,23 +1,24 @@
 /*global define*/
 
 define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'templates',
-    'elements/nav',
-    'views/plat',
-    'views/tab',
-    'views/word',
-    'views/primer',
-    'models/plat',
-    'models/plats',
-    'models/key',
-    'models/tab',
-    'models/word',
-    'models/jtab',
-    'models/primer'
-], function ($, _, Backbone, JST, DOM, PlatView, TabView, WordView, PrimerView, PlatModel, PlatModelCollection, KeyModel, TabModel, WordModel, jTabModel, PrimerModel) {
+    'jquery',       'underscore',   
+    'backbone',     'templates',    'elements/nav',
+    'views/plat',   'models/plat',  'models/plats',
+    'views/tab',    'models/tab',
+    'views/word',   'models/word',
+    'views/primer', 'models/primer',
+    'views/scale',  'models/scale',
+    'models/key',   'models/jtab'
+], function (
+    $,          _,          
+    Backbone,   JST,        DOM, 
+    PlatView,   PlatModel,  PlatModelCollection,
+    TabView,    TabModel, 
+    WordView,   WordModel,
+    PrimerView, PrimerModel,
+    ScaleView,  ScaleModel,
+    KeyModel,   jTabModel
+    ) {
 
     'use strict';
 
@@ -49,19 +50,28 @@ define([
 
             // dynamically named events
             e['click '   + DOM.menuHome]    = 'subNav';
+
             e['click '   + DOM.menuWord]    = 'subNav';
-            e['click '   + DOM.menuPlat]    = 'subNav';
-            e['click '   + DOM.menuTab]     = 'subNav';
-            e['click '   + DOM.menuPrimer]  = 'subNav';
-            e['click '   + DOM.menuPrimer]  =  function(e){ that.subNav(e); that.primersLoad(e); };
             e['click '   + DOM.wordAdd]     = 'wordFind';
+
+            e['click '   + DOM.menuPlat]    = 'subNav';
             e['click '   + DOM.platsKey]    = 'platAdd';
             e['click '   + DOM.platNext]    = 'platShowNextKeys';
+
+            e['click '   + DOM.menuTab]     = 'subNav';
             e['click '   + DOM.tabAdd]      = 'tabAdd';
             e['focus '   + DOM.tabFind]     = 'tabHint';
             e['keyup '   + DOM.tabFind]     = 'tabHint';
             e['keydown ' + DOM.tabFind]     = 'tabFindFormatter';
             e['click '   + DOM.tabHints]    = 'tabHintClick';
+
+            e['click '   + DOM.menuScale]   = 'subNav';
+            e['click '   + DOM.scaleAdd]    = 'scaleAdd';
+
+            e['click '   + DOM.menuPrimer]  =  function(e){ that.subNav(e); that.primersLoad(e); };
+
+
+
 
             // return object
             return e;
@@ -74,7 +84,14 @@ define([
         subNav:function(e){
 
             var item  = $(e.target).attr('item');
-            var items = [DOM.menuHome, DOM.Home, DOM.menuWord, DOM.Words, DOM.words, DOM.Plats, DOM.menuPlat, DOM.Tabs, DOM.menuTab, DOM.plats, DOM.tabs, DOM.menuPrimer, DOM.Primers, DOM.primers];
+            var items = [   
+                            DOM.menuHome,   DOM.Home, 
+                            DOM.menuWord,   DOM.Words,      DOM.words, 
+                            DOM.menuPlat,   DOM.Plats ,     DOM.plats,
+                            DOM.menuTab,    DOM.Tabs,       DOM.tabs,
+                            DOM.menuScale,  DOM.Scales,     DOM.scales, 
+                            DOM.menuPrimer, DOM.Primers,    DOM.primers
+                        ];
 
             // GA: log page views
             ga('send', 'event', 'page', 'view', 'page', item);
@@ -111,6 +128,12 @@ define([
                     $(DOM.Tabs).toggleClass('showing');
                     if($(DOM.menuTab).hasClass('showing')) $(DOM.tabFind).trigger('focus');
                     hideAllExcept([DOM.menuTab, DOM.tabs, DOM.Tabs]);
+                    break;
+                case 'scales':
+                    $(DOM.menuScale).toggleClass('showing');
+                    $(DOM.scales).toggleClass('showing');
+                    $(DOM.Scales).toggleClass('showing');
+                    hideAllExcept([DOM.menuScale, DOM.scales, DOM.Scales]);
                     break;
                 case 'primers':
                     $(DOM.menuPrimer).toggleClass('showing');
@@ -349,6 +372,22 @@ define([
 
         },
 
+        // SCALES
+
+        scaleAdd:function() {
+
+            // get key and scale
+            var key   = $("#ScaleKey").val();
+            var scale = $("#ScaleType").val();
+
+            // if valid selection
+            if(key != 'key' && scale != 'scale') {
+                var model = new ScaleModel({ key:key, scale:scale });
+                var view  = new ScaleView({ model:model });
+            }
+
+        },
+
         // PRIMERS
 
         primersLoad:function(){
@@ -365,7 +404,7 @@ define([
             var key = new KeyModel();
 
             // attach notes
-            this.$el.html( this.template({ keys:key.get('notation').roots }) );
+            this.$el.html( this.template({ keys:key.get('roots') }) );
 
             // add to main template
             $('#Main').append(this.$el);
