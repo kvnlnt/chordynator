@@ -1,0 +1,77 @@
+#Primers {
+    display: block;
+    opacity: 0; 
+    height: 0;
+    overflow: hidden;
+}
+
+#Primers ul {
+    color:#FFFFFF;
+    text-align: left;
+    list-style: none;
+    margin:0;
+    padding:0;
+}
+
+#Primers ul li {
+    padding: 0.75rem;
+    border-bottom: 1px dotted #2878AD;
+    clear: left;
+}
+
+#Primers ul li img{
+    height:100%;
+    margin:0 1rem 0 0;
+    float: left;
+}
+
+#Primers ul li a {
+    font-size: 0.85rem;
+    margin:0;
+    padding: 0;
+    line-height: 1.5rem;
+    font-family: 'Quantico';
+    width:100%;
+    height: 1.5rem;
+    display: block;
+}
+
+#Primers ul li p {
+    font-size: 0.75rem;
+    margin:0;
+    padding: 0;
+    height: 0;
+    overflow: hidden;
+    opacity:0;
+    font-family: 'Arial';
+}
+
+#Primers ul li p.showing {
+    -webkit-transition: opacity 2s ease-out;
+    opacity: 1;
+    height: auto;
+}
+
+#Primers.showing {
+    -webkit-transition: opacity 2s ease-out;
+    opacity: 1;
+    height: auto;
+}
+
+#Nav .primers ul li {
+    font-size: 1rem;
+    cursor:pointer;
+    display: block;
+    height: 100%;
+    font-family: 'Quantico';
+    text-transform: uppercase;
+    color:#FFFFFF;
+    padding:0;
+    width: 100%;
+}
+
+#Nav .primers ul li:hover, 
+#Nav .primers ul li.showing {
+    background-color: #2878AD;
+    transition: background-color 0.5s;
+}

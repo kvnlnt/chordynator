@@ -1,0 +1,136 @@
+#Scales {
+    display: block;
+    opacity: 0; 
+    height: 0;
+    overflow: hidden;
+}
+
+#Scales.showing {
+    -webkit-transition: opacity 2s ease-out;
+    opacity: 1;
+    height: auto;
+}
+
+#Scales {
+    font-family: 'Quantico';
+}
+
+#Scales h2 {
+    font-size:1.25rem;
+    color:#1B6BA1;
+}
+
+#Scales p {
+    font-family: 'Arial';
+    font-size: 0.75rem;
+    color: #FFFFFF;
+    padding:0 2rem 1rem;
+    color:#FFFFFF;
+}
+
+/*menu*/
+.scales li:nth-child(1),
+.scales li:nth-child(2) {
+    width: 40%;
+}
+
+.scales select {
+    width: 100%;
+    height: 3rem;
+    font-size: 1rem;
+    padding: 0 0.5rem;
+    background-color: #1B6BA1;
+    color: white;
+    border: 0;
+}
+
+.scales li:nth-child(3){
+    width: 20%;
+}
+
+.scale {
+    height: 1000px;
+    width: 250px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.scale.placeholder {
+    height: 1000px;
+    width: 250px;
+    display:inline-block;
+    vertical-align: top;
+    border:1px solid #1B6BA1;
+    position: relative;
+}
+
+.scale image.move {
+    opacity:0.4;
+    cursor: move;
+}
+
+.scale image.move:hover {
+    opacity:1;
+}
+
+.scale image.remove {
+    opacity:0.4;
+    cursor: pointer;
+}
+
+.scale image.remove:hover {
+    opacity: 1;
+}
+
+.scale .fretboard-note {
+    visibility: hidden;
+}
+
+.scale .fretboard-note.showing {
+    visibility: visible;
+}
+
+.scale text.key_scale {
+    font-family: 'Quantico';
+    fill: #1B6BA1;
+    font-size: 0.5rem;
+    text-anchor: middle;
+    cursor: pointer;
+}
+
+.scale tspan.key_scale_type{
+    font-size: 0.45rem;
+    opacity: 0.75;
+}
+
+.scale text.index {
+    font-size: 0.35rem;
+    fill: #1B6BA1;
+}
+
+.scale line.bar {
+    stroke: #1B6BA1;
+    stroke-width: 0.5;
+    opacity: 0.5;
+}
+
+.scale text.note {
+    font-size: 0.35rem;
+    fill: #FFFFFF;
+    text-anchor: middle;
+    font-family: 'Arial';
+    font-weight: bold;
+}
+
+.scale circle.finger {
+    fill:#1B6BA1;
+}
+
+.scale text.key_notes {
+   font-size: 0.25rem;
+    fill: #1B6BA1;
+    text-anchor: middle;
+    font-family: 'Arial';
+    font-weight: bold;
+    opacity: 0.35;
+}

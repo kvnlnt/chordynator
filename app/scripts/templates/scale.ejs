@@ -1,0 +1,41 @@
+<div class="scale" scale="<%= key %>_<%= scale %>">
+    <svg viewBox="0 0 100 400" version="1.1">
+
+        <!-- Buttons -->
+        <image button="remove" x="80" y="0" width="20" height="20" class="remove" xlink:href="images/delete.svg"></image>
+        <image button="handle" x="0"  y="0" width="20" height="20" class="move" xlink:href="images/handle.svg"></image>
+
+        <!-- Scale -->
+        <text x="50" y="14" class="key_scale">
+            <%= key %>
+            <tspan class="key_scale_type">
+                <%= title %>
+            </tspan>
+        </text>
+
+        <!-- Bars -->
+        <% _.each(fretboard.bars, function(bar, index){ %>
+            <text x="5" y="<%= bar - fretboard.fontOffset %>" class="index"><%= index %></text>
+            <line x1="20" y1="<%= bar %>" x2="90" y2="<%= bar %>" class="bar"></line>
+        <% }); %>
+
+        <!-- Strings -->
+        <% _.each(fretboard.strings, function(string, index){ %>
+            <line x1="<%= string %>" y1="<%= _.first(fretboard.bars) %>" x2="<%= string %>" y2="<%= _.last(fretboard.bars) %>" class="bar"></line>
+        <% }); %>
+        
+        <!-- Notes -->
+        <% _.each(fretboard.notes, function(note, index){ %>
+        <g class="fretboard-note <%= note.showing %>" note="<%= note.note %>">
+            <circle cx="<%= note.x %>" cy="<%= note.y - fretboard.noteOffset %>" r="<%= note.radius %>" class="finger" />
+            <text x="<%= note.x %>" y="<%= note.y - 6 %>" class="note"><%= note.note.split('/')[0] %></text>
+        </g>
+        <% }); %>
+
+        <!-- Key Notes -->
+        <text x="50" y="396" class="key_notes"> notes: <%= fretboard.key_notes.join(', ') %></text>
+       
+
+    </svg>
+</div>
+
