@@ -16,7 +16,7 @@ require.config({
     },
     paths: {
         jquery: '../bower_components/jquery/jquery',
-        jquery_sortable:'../bower_components/jquery-sortable/jquery-sortable',
+        jquery_sortable:'../bower_components/jquery-sortable/source/js/jquery-sortable',
         xml2json:'vendor/xml2json',
         energize:'../bower_components/energize.js/energize',
         backbone: '../bower_components/backbone/backbone',

@@ -18,6 +18,7 @@
     max-height: 180px;
     display:inline-block;
     vertical-align: top;
+    cursor: pointer;
 }
 
 .tab.placeholder {
@@ -27,6 +28,11 @@
     vertical-align: top;
     border:1px solid #1B6BA1;
     position: relative;
+}
+
+.tab svg {
+    height:100%;
+    width: 100%;
 }
 
 .tab text.chord {
@@ -41,21 +47,21 @@
     fill:#FFFFFF;
 }
 
-.tab image.remove {
+.tab g.remove {
     opacity:0.4;
     cursor: pointer;
 }
 
-.tab image.remove:hover {
+.tab g.remove:hover {
     opacity: 1;
 }
 
-.tab image.move {
+.tab g.move {
     opacity:0.4;
     cursor: move;
 }
 
-.tab image.move:hover {
+.tab g.move:hover {
     opacity:1;
 }
 

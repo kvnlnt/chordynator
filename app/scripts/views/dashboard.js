@@ -29,7 +29,7 @@ define([
             $("#Tabs").sortable({
                 containerSelector:'#Tabs',
                 itemSelector:'div.tab',
-                handle:'image',
+                handle:'g',
                 placeholder: '<div class="tab placeholder"/>'
             });
 
@@ -45,7 +45,7 @@ define([
             $("#Scales").sortable({
                 containerSelector:'#Scales',
                 itemSelector:'div.scale',
-                handle:'image',
+                handle:'g',
                 placeholder: '<div class="scale placeholder"/>'
             });
 

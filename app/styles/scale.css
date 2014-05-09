@@ -64,22 +64,22 @@
     position: relative;
 }
 
-.scale image.move {
-    opacity:0.4;
-    cursor: move;
-}
-
-.scale image.move:hover {
-    opacity:1;
-}
-
-.scale image.remove {
+.scale g.remove {
     opacity:0.4;
     cursor: pointer;
 }
 
-.scale image.remove:hover {
+.scale g.remove:hover {
     opacity: 1;
+}
+
+.scale g.move {
+    opacity:0.4;
+    cursor: move;
+}
+
+.scale g.move:hover {
+    opacity:1;
 }
 
 .scale .fretboard-note {
