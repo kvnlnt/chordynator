@@ -193,9 +193,6 @@ define([
 
         tabHint:function(e){
 
-            // visual formatter
-            this.tabFindFormatter(e);
-
             // now do internal formatting 
             var text  = $(DOM.tabFind).val().replace("*","dim");
 

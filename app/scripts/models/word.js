@@ -13,7 +13,7 @@ define([
         defaults: {
             UserID: 0,
             Token: '',
-            endpoint: { rhyme:'http://chordynator.com:3000' },
+            endpoint: 'http://wordsum.chordynator.com' ,
             word:'',
             rhymes:'',
             idioms:'',
@@ -28,7 +28,8 @@ define([
             // get rhymes
             $.ajax({
                 type:"GET",
-                url: this.get('endpoint').rhyme + '/' + this.get('word'), 
+                url: this.get('endpoint') + '/' + this.get('word'),
+                dataType: 'json',
                 async: true, 
                 timeout:3000,
 
