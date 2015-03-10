@@ -250,6 +250,11 @@ module.exports = function (grunt) {
                         'styles/fonts/{,*/}*.*',
                     ]
                 }]
+            },
+            cname:{
+                src: 'CNAME',
+                dest: '<%= yeoman.dist %>/',
+                filter: 'isFile'
             }
         },
         bower: {
