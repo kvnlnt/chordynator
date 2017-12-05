@@ -1,46 +1,45 @@
 /*global define*/
 
-define(function () {
-    'use strict';
+define(function() {
+  "use strict";
 
-    // dom els
-    var dom = {
+  // dom els
+  var dom = {
+    logo: ".logo",
 
-        menuHome:   '.menu > ul.items > li > a.nav_home',
-        menuPlat:   '.menu > ul.items > li > a.nav_plats',
-        menuTab:    '.menu > ul.items > li > a.nav_tabs',
-        menuWord:   '.menu > ul.items > li > a.nav_words',
-        menuPrimer: '.menu > ul.items > li > a.nav_primers',
-        menuScale:  '.menu > ul.items > li > a.nav_scales',
+    menuHome: ".logo",
+    menuPlat: ".menu > .menu-item.nav_plats",
+    menuTab: ".menu > .menu-item.nav_tabs",
+    menuWord: ".menu > .menu-item.nav_words",
+    menuPrimer: ".menu > .menu-item.nav_primers",
+    menuScale: ".menu > .menu-item.nav_scales",
 
-        Home:     '#Home',
+    Home: "#Home",
 
-        Words:    '#Words',
-        words:    '.words',
-        wordFind: '.words .find input',
-        wordAdd:  '.words .add a',
+    Words: "#Words",
+    words: ".words",
+    wordFind: ".words .find input",
+    wordAdd: ".words .add a",
 
-        Plats:    '#Plats',
-        plats:    '.plats',
-        platsKey: '.plats .key',
-        platNext: '.plats .next',
+    Plats: "#Plats",
+    plats: ".plats",
+    platsKey: ".plats .key",
+    platNext: ".plats .next",
 
-        Tabs:     '#Tabs',
-        tabs:     '.tabs',
-        tabFind:  '.tabs .find input',
-        tabItems: '.tabs .items',
-        tabHints: '.tabs .hint',
-        tabAdd:   '.tabs .add a',
+    Tabs: "#Tabs",
+    tabs: ".tabs",
+    tabFind: ".tabs .find input",
+    tabItems: ".tabs .items",
+    tabHints: ".tabs .hint",
+    tabAdd: ".tabs .add a",
 
-        Scales:   '#Scales',
-        scales:   '.scales',
-        scaleAdd: '.scales .add a',
+    Scales: "#Scales",
+    scales: ".scales",
+    scaleAdd: ".scales .add a",
 
-        Primers:  '#Primers',
-        primers:  '.primers'
+    Primers: "#Primers",
+    primers: ".primers"
+  };
 
-    };
-
-    return dom;
-
+  return dom;
 });

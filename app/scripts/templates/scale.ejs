@@ -5,47 +5,54 @@
         <!-- <image button="remove" x="80" y="0" width="20" height="20" class="remove" xlink:href="images/delete.svg"></image> -->
         <!-- <image button="handle" x="0"  y="0" width="20" height="20" class="move" xlink:href="images/handle.svg"></image> -->
 
-         <g button="handle" class="move" transform="translate(0,0)">
-            <rect fill="#05141E" width="15" height="15"/>
-            <path transform="scale(0.20) translate(28,28)" fill="#1B6BA1" d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/>
+        <g button="handle" class="move" transform="translate(0,0)">
+            <rect fill="#000000" width="15" height="15" />
+            <path transform="scale(0.20) translate(28,28)" fill="#FFFFFF" d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"
+            />
         </g>
 
         <g button="remove" class="remove" transform="translate(85,2)">
-            <rect fill="#05141E" width="15" height="15"/>
-            <path transform="scale(0.23) translate(20,18)" fill="#1B6BA1" d="M22.245,4.015c0.313,0.313,0.313,0.826,0,1.139l-6.276,6.27c-0.313,0.312-0.313,0.826,0,1.14l6.273,6.272  c0.313,0.313,0.313,0.826,0,1.14l-2.285,2.277c-0.314,0.312-0.828,0.312-1.142,0l-6.271-6.271c-0.313-0.313-0.828-0.313-1.141,0  l-6.276,6.267c-0.313,0.313-0.828,0.313-1.141,0l-2.282-2.28c-0.313-0.313-0.313-0.826,0-1.14l6.278-6.269  c0.313-0.312,0.313-0.826,0-1.14L1.709,5.147c-0.314-0.313-0.314-0.827,0-1.14l2.284-2.278C4.308,1.417,4.821,1.417,5.135,1.73  L11.405,8c0.314,0.314,0.828,0.314,1.141,0.001l6.276-6.267c0.312-0.312,0.826-0.312,1.141,0L22.245,4.015z"/>
+            <rect fill="#000000" width="15" height="15" />
+            <path transform="scale(0.23) translate(20,18)" fill="#FFFFFF" d="M22.245,4.015c0.313,0.313,0.313,0.826,0,1.139l-6.276,6.27c-0.313,0.312-0.313,0.826,0,1.14l6.273,6.272  c0.313,0.313,0.313,0.826,0,1.14l-2.285,2.277c-0.314,0.312-0.828,0.312-1.142,0l-6.271-6.271c-0.313-0.313-0.828-0.313-1.141,0  l-6.276,6.267c-0.313,0.313-0.828,0.313-1.141,0l-2.282-2.28c-0.313-0.313-0.313-0.826,0-1.14l6.278-6.269  c0.313-0.312,0.313-0.826,0-1.14L1.709,5.147c-0.314-0.313-0.314-0.827,0-1.14l2.284-2.278C4.308,1.417,4.821,1.417,5.135,1.73  L11.405,8c0.314,0.314,0.828,0.314,1.141,0.001l6.276-6.267c0.312-0.312,0.826-0.312,1.141,0L22.245,4.015z"
+            />
         </g>
 
         <!-- Scale -->
         <text x="50" y="14" class="key_scale">
             <%= key %>
-            <tspan class="key_scale_type">
-                <%= title %>
-            </tspan>
+                <tspan class="key_scale_type">
+                    <%= title %>
+                </tspan>
         </text>
 
         <!-- Bars -->
         <% _.each(fretboard.bars, function(bar, index){ %>
-            <text x="5" y="<%= bar - fretboard.fontOffset %>" class="index"><%= index %></text>
+            <text x="5" y="<%= bar - fretboard.fontOffset %>" class="index">
+                <%= index %>
+            </text>
             <line x1="20" y1="<%= bar %>" x2="90" y2="<%= bar %>" class="bar"></line>
-        <% }); %>
+            <% }); %>
 
-        <!-- Strings -->
-        <% _.each(fretboard.strings, function(string, index){ %>
-            <line x1="<%= string %>" y1="<%= _.first(fretboard.bars) %>" x2="<%= string %>" y2="<%= _.last(fretboard.bars) %>" class="bar"></line>
-        <% }); %>
-        
-        <!-- Notes -->
-        <% _.each(fretboard.notes, function(note, index){ %>
-        <g class="fretboard-note <%= note.showing %>" note="<%= note.note %>">
-            <circle cx="<%= note.x %>" cy="<%= note.y - fretboard.noteOffset %>" r="<%= note.radius %>" class="finger" />
-            <text x="<%= note.x %>" y="<%= note.y - 6 %>" class="note"><%= note.note.split('/')[0] %></text>
-        </g>
-        <% }); %>
+                <!-- Strings -->
+                <% _.each(fretboard.strings, function(string, index){ %>
+                    <line x1="<%= string %>" y1="<%= _.first(fretboard.bars) %>" x2="<%= string %>" y2="<%= _.last(fretboard.bars) %>" class="bar"></line>
+                    <% }); %>
 
-        <!-- Key Notes -->
-        <text x="50" y="396" class="key_notes"> notes: <%= fretboard.key_notes.join(', ') %></text>
-       
+                        <!-- Notes -->
+                        <% _.each(fretboard.notes, function(note, index){ %>
+                            <g class="fretboard-note <%= note.showing %>" note="<%= note.note %>">
+                                <circle cx="<%= note.x %>" cy="<%= note.y - fretboard.noteOffset %>" r="<%= note.radius %>" class="finger" />
+                                <text x="<%= note.x %>" y="<%= note.y - 6 %>" class="note">
+                                    <%= note.note.split('/')[0] %>
+                                </text>
+                            </g>
+                            <% }); %>
+
+                                <!-- Key Notes -->
+                                <text x="50" y="396" class="key_notes"> notes:
+                                    <%= fretboard.key_notes.join(', ') %>
+                                </text>
+
 
     </svg>
 </div>
-

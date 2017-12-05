@@ -1,83 +1,71 @@
 /*global define*/
 
-define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'views/svg',
-    'templates'
-], function ($, _, Backbone, SVGview, JST) {
-    'use strict';
+define(["jquery", "underscore", "backbone", "views/svg", "templates"], function(
+  $,
+  _,
+  Backbone,
+  SVGview,
+  JST
+) {
+  "use strict";
 
-    var TabView = Backbone.View.extend({
+  var TabView = Backbone.View.extend({
+    template: JST["app/scripts/templates/tab.ejs"],
 
-        template: JST['app/scripts/templates/tab.ejs'],
+    initialize: function() {
+      // render by default
+      this.render();
 
-        initialize:function(){
+      // pubs/subs
+      this.model.on("change:tab", this.render, this);
+    },
 
-            // render by default
-            this.render();
+    events: function() {
+      // events container
+      var e = {};
 
-            // pubs/subs
-            this.model.on('change:tab', this.render, this);
+      // dynamically named events
+      // e['click'] = 'nextVariation';
+      e['click svg > [button="remove"]'] = "close";
 
-        },
+      // return object
+      return e;
+    },
 
-        events: function() {
+    nextVariation: function() {
+      this.model.nextVariation();
+    },
 
-            // events container
-            var e = {};
+    render: function() {
+      // get template
+      var template = this.template(this.model.get("tab"));
 
-            // dynamically named events
-            e['click'] = 'nextVariation';
-            e['click svg > [button="remove"]'] = 'close';
+      // check if element already exists on page and get index
+      var index = $("#Tabs .tab").index(this.$el);
 
-            // return object
-            return e;
+      // assign to el
+      this.setElement(template);
 
-        },
+      // HACK : No element is being constructed, it's all in the template...where/when should a container be attached to the DOM? On intialize?
+      // attach plat template and plat to DOM
+      // if index exists, remove and paste in at index, else prepend to Tabs
+      if (index >= 0) {
+        var old_tab = $("#Tabs .tab").get(index); // get old tab dom element by index
+        this.$el.insertAfter(old_tab); // insert new one after it
+        old_tab.remove(); // remove the old tab
+      } else {
+        $("#Tabs").prepend(this.el);
+      }
+    },
 
-        nextVariation:function(){
+    close: function(id) {
+      // delete it's model
+      delete this.model;
 
-            this.model.nextVariation();
+      // remove this view
+      this.remove();
+    }
+  });
 
-        },
-
-        render:function(){
-
-            // get template
-            var template  = this.template(this.model.get('tab'));
-
-            // check if element already exists on page and get index
-            var index = $("#Tabs .tab").index(this.$el);
-
-            // assign to el
-            this.setElement(template);
-
-            // HACK : No element is being constructed, it's all in the template...where/when should a container be attached to the DOM? On intialize? 
-            // attach plat template and plat to DOM
-            // if index exists, remove and paste in at index, else prepend to Tabs
-            if(index >= 0){
-                var old_tab = $("#Tabs .tab").get(index); // get old tab dom element by index
-                this.$el.insertAfter(old_tab); // insert new one after it
-                old_tab.remove(); // remove the old tab
-            } else {
-                $('#Tabs').prepend(this.el);
-            }
-
-        },
-
-        close:function(id){
-
-            // delete it's model
-            delete this.model;
-
-            // remove this view
-            this.remove();
-
-        }
-
-    });
-
-    return TabView;
+  return TabView;
 });

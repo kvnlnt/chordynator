@@ -1,12 +1,11 @@
+<a class="logo" item="home">
+    <img src="images/logo.svg" />
+</a>
+
 <div class="menu">
-    <ul class="items">
-        <li><a class="item nav_home showing"    item="home">   <i class="fa fa-home"></i></a></li>
-        <li><a class="item nav_plats"           item="plats">  <i class="fa fa-sitemap"></i></a></li>
-        <li><a class="item nav_tabs"            item="tabs">   <i class="fa fa-search"></i></a></li>
-        <li><a class="item nav_words"           item="words">  <i class="fa fa-pencil"></i></a></li>
-        <li><a class="item nav_scales"          item="scales"> <i class="fa fa-tasks"></i></a></li>
-        <li><a class="item nav_primers"         item="primers"><i class="fa fa-flask"></i></a></li>
-    </ul>
+    <a class="menu-item nav_plats" item="plats">Maps</a>
+    <a class="menu-item nav_tabs" item="tabs">Chords</a>
+    <a class="menu-item nav_scales" item="scales">Scales</a>
 </div>
 
 <div class="scales">
@@ -41,7 +40,9 @@
                 <option value="blues">Blues</option>
             </select>
         </li>
-        <li class="item add"><a>+</a></li>
+        <li class="item add">
+            <a>+</a>
+        </li>
     </ul>
 </div>
 
@@ -53,35 +54,57 @@
 
 <div class="words">
     <ul class="items">
-        <li class="item find"><input type="text" placeholder="WORD" /></li>
-        <li class="item add"><a>+</a></li>
+        <li class="item find">
+            <input type="text" placeholder="WORD" />
+        </li>
+        <li class="item add">
+            <a>+</a>
+        </li>
     </ul>
 </div>
 
 <div class="plats">
     <ul class="items keys bases">
         <% for(var key in keys) { %>
-        <li><a class="item key" data-key="<%= keys[key] %>"><%= keys[key] %></a></li>
-        <% } %>
-        <li><a class="item next">+</a></li>
+            <li>
+                <a class="item key" data-key="<%= keys[key] %>">
+                    <%= keys[key] %>
+                </a>
+            </li>
+            <% } %>
+                <li>
+                    <a class="item next">+</a>
+                </li>
     </ul>
     <ul class="items keys flats">
         <% for(var key in keys) { %>
-        <li><a class="item key" data-key="<%= keys[key] %>b"><%= keys[key] %><sup>♭</sup></a></li>
-        <% } %>
-        <li><a class="item next">+</a></li>
+            <li>
+                <a class="item key" data-key="<%= keys[key] %>b"><%= keys[key] %><sup>♭</sup></a>
+            </li>
+            <% } %>
+                <li>
+                    <a class="item next">+</a>
+                </li>
     </ul>
     <ul class="items keys sharps">
         <% for(var key in keys) { %>
-        <li><a class="item key" data-key="<%= keys[key] %>#"><%= keys[key] %><sup>♯</sup></a></li>
-        <% } %>
-        <li><a class="item next">+</a></li>
+            <li>
+                <a class="item key" data-key="<%= keys[key] %>#"><%= keys[key] %><sup style="font-size:12px;">♯</sup></a>
+            </li>
+            <% } %>
+                <li>
+                    <a class="item next">+</a>
+                </li>
     </ul>
 </div>
 
 <div class="tabs">
     <ul class="items">
-        <li class="item find"><input type="text" placeholder="CHORD" /></li>
-        <li class="item add"><a>+</a></li>
+        <li class="item find">
+            <input type="text" placeholder="CHORD" />
+        </li>
+        <li class="item add">
+            <a>+</a>
+        </li>
     </ul>
 </div>

@@ -1,136 +1,136 @@
 #Scales {
-    display: block;
-    opacity: 0; 
-    height: 0;
-    overflow: hidden;
+  display: block;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
 }
 
 #Scales.showing {
-    -webkit-transition: opacity 2s ease-out;
-    opacity: 1;
-    height: auto;
+  -webkit-transition: opacity 2s ease-out;
+  opacity: 1;
+  height: auto;
 }
 
 #Scales {
-    font-family: 'Quantico';
+  font-family: "Quantico";
 }
 
 #Scales h2 {
-    font-size:1.25rem;
-    color:#1B6BA1;
+  font-size: 1.25rem;
+  color: #ffffff;
 }
 
 #Scales p {
-    font-family: 'Arial';
-    font-size: 0.75rem;
-    color: #FFFFFF;
-    padding:0 2rem 1rem;
-    color:#FFFFFF;
+  font-family: "Arial";
+  font-size: 0.75rem;
+  color: #ffffff;
+  padding: 0 2rem 1rem;
+  color: #ffffff;
 }
 
 /*menu*/
 .scales li:nth-child(1),
 .scales li:nth-child(2) {
-    width: 40%;
+  width: 40%;
 }
 
 .scales select {
-    width: 100%;
-    height: 3rem;
-    font-size: 1rem;
-    padding: 0 0.5rem;
-    background-color: #1B6BA1;
-    color: white;
-    border: 0;
+  width: 100%;
+  height: 3rem;
+  font-size: 1rem;
+  padding: 0 0.5rem;
+  background-color: #ffffff;
+  color: #000000;
+  border: 0;
 }
 
-.scales li:nth-child(3){
-    width: 20%;
+.scales li:nth-child(3) {
+  width: 20%;
 }
 
 .scale {
-    height: 1000px;
-    width: 250px;
-    display: inline-block;
-    vertical-align: top;
+  height: 1000px;
+  width: 250px;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .scale.placeholder {
-    height: 1000px;
-    width: 250px;
-    display:inline-block;
-    vertical-align: top;
-    border:1px solid #1B6BA1;
-    position: relative;
+  height: 1000px;
+  width: 250px;
+  display: inline-block;
+  vertical-align: top;
+  border: 1px solid #ffffff;
+  position: relative;
 }
 
 .scale g.remove {
-    opacity:0.4;
-    cursor: pointer;
+  opacity: 0.4;
+  cursor: pointer;
 }
 
 .scale g.remove:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .scale g.move {
-    opacity:0.4;
-    cursor: move;
+  opacity: 0.4;
+  cursor: move;
 }
 
 .scale g.move:hover {
-    opacity:1;
+  opacity: 1;
 }
 
 .scale .fretboard-note {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .scale .fretboard-note.showing {
-    visibility: visible;
+  visibility: visible;
 }
 
 .scale text.key_scale {
-    font-family: 'Quantico';
-    fill: #1B6BA1;
-    font-size: 0.5rem;
-    text-anchor: middle;
-    cursor: pointer;
+  font-family: "Quantico";
+  fill: #ffffff;
+  font-size: 0.5rem;
+  text-anchor: middle;
+  cursor: pointer;
 }
 
-.scale tspan.key_scale_type{
-    font-size: 0.45rem;
-    opacity: 0.75;
+.scale tspan.key_scale_type {
+  font-size: 0.45rem;
+  opacity: 0.75;
 }
 
 .scale text.index {
-    font-size: 0.35rem;
-    fill: #1B6BA1;
+  font-size: 0.35rem;
+  fill: #ffffff;
 }
 
 .scale line.bar {
-    stroke: #1B6BA1;
-    stroke-width: 0.5;
-    opacity: 0.5;
+  stroke: #ffffff;
+  stroke-width: 0.5;
+  opacity: 0.5;
 }
 
 .scale text.note {
-    font-size: 0.35rem;
-    fill: #FFFFFF;
-    text-anchor: middle;
-    font-family: 'Arial';
-    font-weight: bold;
+  font-size: 0.35rem;
+  fill: #000000;
+  text-anchor: middle;
+  font-family: "Arial";
+  font-weight: bold;
 }
 
 .scale circle.finger {
-    fill:#1B6BA1;
+  fill: #ffffff;
 }
 
 .scale text.key_notes {
-   font-size: 0.25rem;
-    fill: #1B6BA1;
-    text-anchor: middle;
-    font-family: 'Arial';
-    font-weight: bold;
-    opacity: 0.35;
+  font-size: 0.25rem;
+  fill: #ffffff;
+  text-anchor: middle;
+  font-family: "Arial";
+  font-weight: bold;
+  opacity: 0.35;
 }

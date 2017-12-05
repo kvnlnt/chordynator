@@ -1,104 +1,109 @@
 #Plats {
-    display: block;
-    opacity: 0; 
-    height: 0;
-    overflow: hidden;
+  display: block;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
 }
 
 #Plats.showing {
-    -webkit-transition: opacity 2s ease-out;
-    opacity: 1;
-    height: auto;
+  -webkit-transition: opacity 2s ease-out;
+  opacity: 1;
+  height: auto;
 }
 
 .plat {
-    height: 100%;
-    width: 100%;
-    max-width: 360px;
-    max-height: 360px;
-    display:inline-block;
-    vertical-align: top;
+  height: 100%;
+  width: 100%;
+  max-width: 360px;
+  max-height: 360px;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .plat.placeholder {
-    width: 360px;
-    height: 360px;
-    display:inline-block;
-    vertical-align: top;
-    border:1px solid #1B6BA1;
-    position: relative;
+  width: 360px;
+  height: 360px;
+  display: inline-block;
+  vertical-align: top;
+  border: 1px solid #ffffff;
+  position: relative;
 }
 
 .plat svg {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 .plat image.move {
-    opacity:0.4;
-    cursor: move;
+  opacity: 0.4;
+  cursor: move;
 }
 
 .plat image.move:hover {
-    opacity:1;
+  opacity: 1;
 }
 
 .plat .plot rect {
-    border-radius: 5px;
-    cursor: pointer;
-    fill: #05141E;
-    stroke: #1B6BA1;
-    stroke-width: 0.55;
+  border-radius: 5px;
+  cursor: pointer;
+  fill: #000000;
+  stroke: rgba(255, 255, 255, 0.25);
+  stroke-width: 0.55;
+  stroke-dasharray: 1;
 }
 
 .plat .plot ellipse {
-    fill:#1B6BA1;
+  fill: #ffffff;
 }
 
 .plat .plot line {
-    stroke:#1B6BA1;
-    stroke-width: 0.55;
+  stroke: #ffffff;
+  stroke-width: 0.55;
 }
 
 .plat .plot ellipse.active {
-    fill:#FFFFFF;
+  fill: #ff0000;
 }
 
-.plat .plot:hover rect, .plat .plot:hover line {
-    stroke: #FFF;
+.plat .plot:hover rect,
+.plat .plot:hover line {
+  stroke: #ff0000;
+  stroke-dasharray: 0;
 }
 
-.plat .plot.active rect, .plat .plot.active line {
-    stroke: #FFFFFF;
+.plat .plot.active rect,
+.plat .plot.active line {
+  stroke: #ff0000;
+  stroke-dasharray: 0;
 }
 
-.plat .plot text.name{
-    fill: #1B6BA1;
-    font-size: 0.45rem;
-    font-family: 'Quantico';
-    pointer-events: none;
-    text-anchor: middle;
+.plat .plot text.name {
+  fill: #ffffff;
+  font-size: 0.45rem;
+  font-family: "Quantico";
+  pointer-events: none;
+  text-anchor: middle;
 }
 
-.plat .plot:hover text.name, 
+.plat .plot:hover text.name,
 .plat .plot.activeLead text.name,
 .plat .plot.activeLead text.type,
 .plat .plot:hover text.type {
-    fill:#FFFFFF;
+  fill: #ffffff;
 }
 
-.plat .plot.active text.name{
-    fill:#FFFFFF;
+.plat .plot.active text.name {
+  fill: #ffffff;
 }
 
-.plat .plot text.type{
-    fill: #1B6BA1;
-    font-size: 0.2rem;
-    font-family: 'Quantico';
-    pointer-events: none;
-    text-anchor: middle;
+.plat .plot text.type {
+  fill: rgba(255, 255, 255, 0.5);
+  font-size: 0.2rem;
+  font-family: "Quantico";
+  pointer-events: none;
+  text-anchor: middle;
 }
 
-.plat .plot.active text.type{
-    fill:#FFFFFF;
+.plat .plot.active text.type {
+  fill: #ffffff;
 }

@@ -1,75 +1,66 @@
 #Home {
-    display: block;
-    opacity: 0; 
-    height: 0;
-    overflow: hidden;
+  display: block;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
 }
 
 #Home.showing {
-    -webkit-transition: opacity 2s ease-out;
-    opacity: 1;
-    height: auto;
-}
-
-#Home img{
-    width:75%;
-    max-width: 300px;
+  -webkit-transition: opacity 2s ease-out;
+  opacity: 1;
+  height: auto;
 }
 
 #Home .menu {
-    padding:0;
-    margin: 0;
-    list-style: none;
-    text-align: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
 }
 
 #Home .menu li {
-    display: block;
-    width:80%;
-    max-width: 320px;
-    margin:0.25rem auto;
-    text-align: left;
+  display: block;
+  width: 80%;
+  max-width: 320px;
+  margin: 0.25rem auto;
+  text-align: left;
 }
 
 #Home .menu li:nth-child(6) {
-    margin-top:1.5rem;
+  margin-top: 1.5rem;
 }
 
 #Home .menu i {
-    margin:0 0.25rem 0 0.6rem;
+  margin: 0 0.25rem 0 0.6rem;
 }
 
 #Home .menu li a {
-    display: block;
-    width:100%;
-    font-family: 'Quantico';
-    color: #1B6BA1;
-    font-size: 0.85rem;
-    text-decoration: none;
-    text-transform: uppercase;
-    border:1px solid #1B6BA1;
-    line-height: 2rem;
-    border-radius:0.25rem;
+  display: block;
+  width: 100%;
+  font-family: "Arial";
+  color: #ffffff;
+  font-size: 1.8rem;
+  text-decoration: none;
 }
 
 #Home .menu li a:hover {
-    color: #FFFFFF;
+  color: #ffffff;
 }
 
 #Home .about {
-    display: block;
-    opacity: 0; 
-    height: 0;
-    overflow: hidden;
-    font-family: 'Arial';
-    width: 85%;
-    font-size: 0.75rem;
-    color: #FFFFFF;
-    margin:1rem auto;
+  display: block;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  font-family: "Arial";
+  width: 85%;
+  font-size: 0.75rem;
+  color: #ffffff;
+  margin: 1rem auto;
 }
 
 #Home .about.showing {
-    -webkit-transition: opacity 2s ease-out;
-    opacity: 1;
-    height: auto;
+  -webkit-transition: opacity 2s ease-out;
+  opacity: 1;
+  height: auto;
 }
