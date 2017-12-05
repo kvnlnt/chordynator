@@ -13,7 +13,6 @@
         <li class="item">
             <select id="ScaleKey">
                 <!-- 'A','A#/Bb', 'B', 'C','C#/Db', 'D', 'D#/Eb', 'E', 'F', 'F#/Gb', 'G', 'G#/Ab' -->
-                <option value="key">Key</option>
                 <option value="C">C</option>
                 <option value="C#/Db">C#/Db</option>
                 <option value="D">D</option>
@@ -30,7 +29,6 @@
         </li>
         <li class="item">
             <select id="ScaleType">
-                <option value="scale">Scale</option>
                 <option value="major">Major</option>
                 <option value="natural_minor">Natural Minor</option>
                 <option value="harmonic_minor">Harmonic Minor</option>
@@ -79,7 +77,10 @@
     <ul class="items keys flats">
         <% for(var key in keys) { %>
             <li>
-                <a class="item key" data-key="<%= keys[key] %>b"><%= keys[key] %><sup>♭</sup></a>
+                <a class="item key" data-key="<%= keys[key] %>b">
+                    <%= keys[key] %>
+                        <sup>♭</sup>
+                </a>
             </li>
             <% } %>
                 <li>
@@ -89,7 +90,10 @@
     <ul class="items keys sharps">
         <% for(var key in keys) { %>
             <li>
-                <a class="item key" data-key="<%= keys[key] %>#"><%= keys[key] %><sup style="font-size:12px;">♯</sup></a>
+                <a class="item key" data-key="<%= keys[key] %>#">
+                    <%= keys[key] %>
+                        <sup style="font-size:12px;">♯</sup>
+                </a>
             </li>
             <% } %>
                 <li>

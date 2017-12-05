@@ -24,12 +24,16 @@ a:hover {
   color: #ffffff;
 }
 
+h1 {
+  font-weight: normal;
+}
+
 #Dashboard {
   padding: 0;
   height: 100%;
-  min-height: 500px;
+  /* min-height: 500px; */
   min-width: 100%;
-  margin: 100px auto;
+  margin: auto;
   width: 100%;
   text-align: center;
   clear: both;
@@ -70,4 +74,13 @@ body.dragging * {
   position: absolute;
   opacity: 0.5;
   z-index: 2000;
+}
+
+#Footer {
+  text-align: center;
+}
+
+#Footer .lint-trap img {
+  width: 100px;
+  margin: 20px;
 }

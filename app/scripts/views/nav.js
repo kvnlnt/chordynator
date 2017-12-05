@@ -158,7 +158,6 @@ define(
             $(DOM.scales).toggleClass("showing");
             $(DOM.Scales).toggleClass("showing");
             hideAllExcept([DOM.menuScale, DOM.scales, DOM.Scales]);
-            this.scaleAdd();
             break;
           case "primers":
             $(DOM.menuPrimer).toggleClass("showing");
@@ -282,7 +281,7 @@ define(
           .val()
           .trim()
           .replace("*", "dim");
-        console.log(name);
+        // console.log(name);
 
         // get variations up to fret 19
         var variations = [];
