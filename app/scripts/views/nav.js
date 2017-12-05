@@ -277,6 +277,7 @@ define(
       // add tab to dashboard
       tabAdd: function(e) {
         // get chord name
+        // and more
         var name = $(DOM.tabFind)
           .val()
           .trim()
