@@ -26,6 +26,16 @@ a:hover {
 
 h1 {
   font-weight: normal;
+  font-size: 1.8rem;
+}
+h2 {
+  font-weight: normal;
+  font-size: 1.4rem;
+  opacity: 0.5;
+}
+
+p {
+  opacity: 0.7;
 }
 
 #Dashboard {
@@ -78,6 +88,7 @@ body.dragging * {
 
 #Footer {
   text-align: center;
+  margin: 50px;
 }
 
 #Footer .lint-trap img {

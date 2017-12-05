@@ -25,7 +25,7 @@ define(["jquery", "underscore", "backbone", "views/svg", "templates"], function(
       var e = {};
 
       // dynamically named events
-      // e['click'] = 'nextVariation';
+      e["click"] = "nextVariation";
       e['click svg > [button="remove"]'] = "close";
 
       // return object
@@ -33,7 +33,7 @@ define(["jquery", "underscore", "backbone", "views/svg", "templates"], function(
     },
 
     nextVariation: function() {
-      this.model.nextVariation();
+      if (this.model) this.model.nextVariation();
     },
 
     render: function() {

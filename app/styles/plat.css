@@ -54,11 +54,11 @@
 }
 
 .plat .plot ellipse {
-  fill: #ffffff;
+  fill: #333333;
 }
 
 .plat .plot line {
-  stroke: #ffffff;
+  stroke: rgba(255, 255, 255, 0.25);
   stroke-width: 0.55;
 }
 
